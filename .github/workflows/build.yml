@@ -108,7 +108,7 @@ jobs:
 
       # ── Tweak sources ──────────────────────────────────────────────────────
       - name: Clone YouMod
-        run: git clone --quiet --depth=1 https://github.com/Tonwalter888/YouMod.git
+        run: git clone --quiet --depth=1 -b pre-release https://github.com/Tonwalter888/YouMod.git
 
       # YTUHD is a YTVideoOverlay plugin: ReloadVideo.x imports ../YTVideoOverlay/Init.x
       # and its %ctor calls into YTVideoOverlay, so the sources must sit side by side and
