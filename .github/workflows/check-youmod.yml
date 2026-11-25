@@ -18,14 +18,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Get latest YouMod release
+      - name: Get YouMod pre-release version
         id: youmod
         run: |
-          LATEST=$(curl -sSf "https://api.github.com/repos/Tonwalter888/YouMod/releases/latest" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            | python3 -c "import sys,json; print(json.load(sys.stdin)['tag_name'].lstrip('v'))")
+          LATEST=$(curl -sSf "https://raw.githubusercontent.com/Tonwalter888/YouMod/pre-release/control" \
+            | grep '^Version:' | cut -d ' ' -f2 | tr -d '\r')
           echo "latest=$LATEST" >> $GITHUB_OUTPUT
-          echo "Latest YouMod release: $LATEST"
+          echo "Pre-release YouMod version: $LATEST"
 
       - name: Get tracked YouMod version from config.yml
         id: tracked
