@@ -196,16 +196,6 @@ jobs:
           rm -rf ipa_tmp && mkdir ipa_tmp && cd ipa_tmp
           unzip -q "../$IPA"
           PLIST=$(ls -d Payload/*.app)/Info.plist
-          # Keep only Safari extensions (e.g. "Open in YouTube"); drop the rest so they
-          # don't use up App IDs on a free Apple account.
-          for ext in Payload/*.app/PlugIns/*.appex Payload/*.app/Extensions/*.appex; do
-            [ -d "$ext" ] || continue
-            POINT=$(/usr/libexec/PlistBuddy -c "Print :NSExtension:NSExtensionPointIdentifier" "$ext/Info.plist" 2>/dev/null || echo "?")
-            case "$POINT" in
-              com.apple.Safari.*) echo "Keeping $(basename "$ext") ($POINT)" ;;
-              *) echo "Removing $(basename "$ext") ($POINT)"; rm -rf "$ext" ;;
-            esac
-          done
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUM" "$PLIST"
           rm "../$IPA" && zip -qry "../$IPA" .
           cd .. && rm -rf ipa_tmp
