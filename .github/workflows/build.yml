@@ -126,6 +126,13 @@ jobs:
       - name: Clone DontEatMyContent
         run: git clone --quiet --depth=1 https://github.com/therealFoxster/DontEatMyContent.git
 
+      # Safari extension that redirects YouTube links to the app (same one YTLite bundles)
+      - name: Get Open in YouTube Safari extension
+        run: |
+          git clone --quiet https://github.com/BillyCurtis/OpenYouTubeSafariExtension.git /tmp/oyse
+          git -C /tmp/oyse checkout --quiet f892c955b7fcea42a783d64526a27dd3fa885e0c
+          cp -R /tmp/oyse/OpenYouTubeSafariExtension.appex ${{ github.workspace }}/
+
       - name: Build YouMod
         run: |
           cd YouMod
@@ -176,7 +183,7 @@ jobs:
       - name: Inject Tweaks Into IPA
         run: |
           cd ${{ github.workspace }}
-          tweaks=""
+          tweaks="OpenYouTubeSafariExtension.appex"
           for f in *.deb; do
             tweaks="$tweaks $f"
           done

@@ -1,6 +1,6 @@
-# YouMod Repo
+# YouMod Pre-release
 
-Automated YouMod IPA builds delivered straight to your AltStore, SideStore, or Feather. 100% no need to fork GitHub repos or find your own decrypted IPA files!
+Automated YouMod IPA builds from the **pre-release** branch of [YouMod](https://github.com/Tonwalter888/YouMod), delivered to AltStore, SideStore, or Feather. Rebuilt automatically whenever a new pre-release commit lands. Pre-release builds may be unstable.
 
 ---
 
@@ -11,10 +11,11 @@ Automated YouMod IPA builds delivered straight to your AltStore, SideStore, or F
 3. Tap **+** and paste the URL below:
 
 ```
-https://raw.githubusercontent.com/MountainofPenguin/Altstore-Repository/main/apps.json
+https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 ```
 
-4. YouMod will appear under Browse — tap **Get** to install
+4. **YouMod Pre-release** will appear under Browse — tap **Get** to install
+5. When asked about app extensions, keep them (on a free Apple account each one uses an App ID)
 
 > **Note:** You must have a signing method set up (AltStore, SideStore, Feather, Signulous, etc.) to install the IPA.
 
@@ -33,7 +34,7 @@ https://raw.githubusercontent.com/MountainofPenguin/Altstore-Repository/main/app
 
 ## Included Tweaks
 
-Only these tweaks are compiled in — nothing else. YTVideoOverlay is a hard runtime
+Only these tweaks are included — nothing else. YTVideoOverlay is a hard runtime
 dependency of YTUHD (its reload button registers through YTVideoOverlay), so it rides along.
 
 | Tweak | Description |
@@ -43,6 +44,9 @@ dependency of YTUHD (its reload button registers through YTVideoOverlay), so it 
 | [Return YouTube Dislikes](https://github.com/PoomSmart/Return-YouTube-Dislikes) | Brings back the dislike count on YouTube videos. |
 | [DontEatMyContent](https://github.com/therealFoxster/DontEatMyContent) | Prevents the player from hiding behind the notch or Dynamic Island. |
 | [YTVideoOverlay](https://github.com/PoomSmart/YTVideoOverlay) | Not a separate feature — YTUHD is built as a YTVideoOverlay plugin and crashes without it, so it ships alongside. |
+| [Open in YouTube](https://github.com/BillyCurtis/OpenYouTubeSafariExtension) | Safari extension that opens YouTube links in the app. Enable it in Settings → Apps → Safari → Extensions → Open in YouTube, and set it to **Allow**. |
+
+YouTube's own app extensions (share sheet, widgets, rich notifications, Siri) are kept.
 
 ---
 
@@ -51,18 +55,20 @@ dependency of YTUHD (its reload button registers through YTVideoOverlay), so it 
 This repo builds and publishes a new YouMod IPA automatically.
 
 ```
-Scheduled workflow checks for a new YouMod release (every 2 hours)
+Scheduled workflow checks YouMod's pre-release branch (every 2 hours)
         ↓
-config.yml is bumped to the new YouMod version
+No release yet for <version>-<commit>? Start a build
         ↓
-GitHub Actions compiles the four tweaks from source
+GitHub Actions compiles the tweaks from source
         ↓
-cyan injects them into the decrypted YouTube IPA
+cyan injects them (plus the Open in YouTube extension) into the decrypted YouTube IPA
         ↓
-apps.json and a GitHub release updated with the new version, size and changelog
+A GitHub release and apps.json are updated with a unique build number
 ```
 
-The YouTube version and its decrypted IPA URL are pinned in [`config.yml`](config.yml) — edit either value and push to trigger a new build manually.
+The YouTube version and its decrypted IPA URL are pinned in [`config.yml`](config.yml) — editing it and pushing to `main` triggers a new build. You can also run **Build YouMod IPA & Update Repo** from the Actions tab.
+
+Older builds stay on the [Releases](https://github.com/wyatt-poole/altstore-repository/releases) page if you need to roll back.
 
 A failed build is retried by the next scheduled check, so the repo does not get stuck on a broken version.
 
@@ -76,3 +82,5 @@ A failed build is retried by the next scheduled check, so the repo does not get 
 | [PoomSmart](https://github.com/PoomSmart) | Return YouTube Dislikes, YTVideoOverlay |
 | [therealFoxster](https://github.com/therealFoxster) | DontEatMyContent |
 | [asdfzxcvbn](https://github.com/asdfzxcvbn) | cyan (IPA injection tool) |
+| [BillyCurtis](https://github.com/BillyCurtis) | Open in YouTube Safari extension |
+| [MountainofPenguin](https://github.com/MountainofPenguin/Altstore-Repository) | Original repo this is forked from |
