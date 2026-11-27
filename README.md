@@ -8,7 +8,7 @@ Automated YouMod IPA builds from the **pre-release** branch of [YouMod](https://
 
 1. Open **AltStore / SideStore / Feather** on your device
 2. Navigate to **Sources** or **Repos**
-3. Tap **+** and paste the URL below:
+3. Tap **+** and paste the URL below (use this exact `raw.githubusercontent.com` link — the normal GitHub repo page won't work and gives a "not valid JSON" error):
 
 ```
 https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
