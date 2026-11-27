@@ -25,8 +25,8 @@ https://raw.githubusercontent.com/MountainofPenguin/Altstore-Repository/main/app
 | | |
 |---|---|
 | **YouTube version** | 21.45.4 |
-| **YouMod version** | 2.1.0-0473ddb |
-| **Last built** | November 26, 2026 |
+| **YouMod version** | 2.1.0-5fd9e6e |
+| **Last built** | November 27, 2026 |
 | **Min iOS** | 14.0 |
 
 ---
