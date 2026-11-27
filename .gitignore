@@ -1,0 +1,7 @@
+*.ipa
+*.ipa.part
+*.deb
+patch_error.png
+patch_error.html
+node_modules/
+__pycache__/

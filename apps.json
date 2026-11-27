@@ -1,9 +1,9 @@
 {
-  "name": "YouMod Pre-release",
+  "name": "Wyatt's Tweaked Apps",
   "identifier": "com.wyatt-poole.youmod-prerelease",
   "apiVersion": "v2",
-  "subtitle": "Auto-built from YouMod's pre-release branch",
-  "description": "Unofficial auto-built YouTube + YouMod IPA from the pre-release branch. Rebuilt automatically whenever a new pre-release commit lands. Expect bugs - these are test builds.",
+  "subtitle": "Auto-built YouMod and Chroma IPAs",
+  "description": "Unofficial, automatically rebuilt IPAs: YouTube with YouMod (pre-release branch) and Spotify with Chroma, optionally with EeveeSpotify. Builds update on their own when the tweaks do.",
   "iconURL": "https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/assets/IMG_2642.png",
   "website": "https://github.com/wyatt-poole/altstore-repository",
   "apps": [
@@ -63,6 +63,22 @@
           "minOSVersion": "14.0"
         }
       ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    },
+    {
+      "name": "Spotify + Chroma",
+      "bundleIdentifier": "com.spotify.client",
+      "developerName": "Chroma",
+      "subtitle": "Spotify with Chroma's shaders and lyrics",
+      "localizedDescription": "Spotify patched with Chroma (chroma.pw): shaders behind the player, word-by-word lyrics, lock-screen lyrics and more. May also include EeveeSpotify. Rebuilt automatically when Chroma updates.",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
+      "tintColor": "1DB954",
+      "category": "entertainment",
+      "screenshots": [],
+      "versions": [],
       "appPermissions": {
         "entitlements": [],
         "privacy": {}

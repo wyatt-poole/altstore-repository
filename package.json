@@ -1,0 +1,8 @@
+{
+  "name": "chroma-spotify",
+  "private": true,
+  "description": "Automates chroma.pw's in-browser Spotify patcher",
+  "dependencies": {
+    "playwright": "1.49.1"
+  }
+}

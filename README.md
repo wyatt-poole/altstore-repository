@@ -1,6 +1,11 @@
-# YouMod Pre-release
+# Wyatt's Tweaked Apps
 
-Automated YouMod IPA builds from the **pre-release** branch of [YouMod](https://github.com/Tonwalter888/YouMod), delivered to AltStore, SideStore, or Feather. Rebuilt automatically whenever a new pre-release commit lands. Pre-release builds may be unstable.
+Automatically rebuilt, tweaked IPAs for AltStore, SideStore and Feather:
+
+- **YouMod Pre-release**: YouTube with [YouMod](https://github.com/Tonwalter888/YouMod) built from its pre-release branch, plus a few companion tweaks
+- **Spotify + Chroma**: Spotify patched with [Chroma](https://chroma.pw), optionally with [EeveeSpotify](https://github.com/whoeevee/EeveeSpotifyReincarnated)
+
+Each app has its own GitHub Actions pipeline. Both publish to the same source.
 
 ---
 
@@ -14,7 +19,7 @@ Automated YouMod IPA builds from the **pre-release** branch of [YouMod](https://
 https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 ```
 
-4. **YouMod Pre-release** will appear under Browse — tap **Get** to install
+4. Both apps appear under Browse. Tap **Get** to install
 5. When asked about app extensions, keep them (on a free Apple account each one uses an App ID)
 
 > **Note:** You must have a signing method set up (AltStore, SideStore, Feather, Signulous, etc.) to install the IPA.
@@ -23,6 +28,8 @@ https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 
 ## Currently Supported
 
+### YouMod Pre-release
+
 | | |
 |---|---|
 | **YouTube version** | 21.45.4 |
@@ -30,9 +37,19 @@ https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 | **Last built** | November 27, 2026 |
 | **Min iOS** | 14.0 |
 
+### Spotify + Chroma
+
+| | |
+|---|---|
+| **Spotify version** | not built yet |
+| **Chroma version** | not built yet |
+| **Spotify last built** | not built yet |
+
 ---
 
-## Included Tweaks
+## YouMod Pre-release
+
+### Included Tweaks
 
 Only these tweaks are included — nothing else. YTVideoOverlay is a hard runtime
 dependency of YTUHD (its reload button registers through YTVideoOverlay), so it rides along.
@@ -48,11 +65,7 @@ dependency of YTUHD (its reload button registers through YTVideoOverlay), so it 
 
 YouTube's own app extensions (share sheet, widgets, rich notifications, Siri) are kept.
 
----
-
-## How Automatic Builds Work
-
-This repo builds and publishes a new YouMod IPA automatically.
+### How the Build Works
 
 ```
 Scheduled workflow checks YouMod's pre-release branch (every 2 hours)
@@ -68,19 +81,60 @@ A GitHub release and apps.json are updated with a unique build number
 
 The YouTube version and its decrypted IPA URL are pinned in [`config.yml`](config.yml) — editing it and pushing to `main` triggers a new build. You can also run **Build YouMod IPA & Update Repo** from the Actions tab.
 
-Older builds stay on the [Releases](https://github.com/wyatt-poole/altstore-repository/releases) page if you need to roll back.
-
 A failed build is retried by the next scheduled check, so the repo does not get stuck on a broken version.
+
+---
+
+## Spotify + Chroma
+
+### How the Build Works
+
+```
+Scheduled workflow checks chroma.pw for a new Chroma kit (every 6 hours)
+        ↓
+New Chroma or Spotify version? (chroma-state.json)
+        ↓
+Download the matching decrypted Spotify IPA
+  PwEevee → EeveePrebuilt → EeveeIPA → decrypt.day
+  (only a decrypted, untweaked com.spotify.client of the exact version is accepted)
+        ↓
+Run chroma.pw's in-browser patcher in headless Chromium, keeping Spotify's own icon
+        ↓
+Optional: put the Watch app back, inject the latest EeveeSpotify .deb with cyan
+        ↓
+A GitHub release and apps.json are updated with a unique build number
+```
+
+If Chroma moves to a Spotify version nobody has uploaded a decrypted IPA for yet, the run logs a warning and ends green. The next check tries again.
+
+Run **Build Spotify + Chroma & Update Repo** from the Actions tab for a manual build. `force` rebuilds the current version, and `base_ipa_url` uses a decrypted IPA link of your choice.
+
+### Options
+
+Repository variables (Settings → Secrets and variables → Actions → Variables). None are required.
+
+| Variable | Default | |
+|---|---|---|
+| `INJECT_EEVEE` | `true` | `false` ships Chroma only |
+| `EEVEE_REPO` | `whoeevee/EeveeSpotifyReincarnated` | where the latest `*iphoneos-arm64.deb` comes from |
+| `CHROMA_CHANNEL` | `stable` | `beta` builds the newest Chroma pre-release |
+| `RESTORE_WATCH` | `false` | `true` copies the Watch app back in (Chroma removes it). Experimental: needs a paid Apple ID and a signer that handles Watch apps, such as Sideloadly. SideStore/AltStore won't install it to the watch |
+| `BASE_IPA_URL` | | always use this decrypted IPA instead of searching |
+| `DOWNLOAD_BASE_URL` | | Worker URL if this repo is ever made private (see [`cloudflare/worker.js`](cloudflare/worker.js)) |
+
+**CarPlay** won't appear in sideloaded Spotify. It needs Apple's CarPlay audio entitlement in the signing profile, and Apple grants that only on request. A tweak or a different bundle ID can't add it.
 
 ---
 
 ## 🙏 Credits
 
-| Developer | Tweaks |
+| Developer | Work |
 |---|---|
 | [Tonwalter888](https://github.com/Tonwalter888) | YouMod, YTUHD |
 | [PoomSmart](https://github.com/PoomSmart) | Return YouTube Dislikes, YTVideoOverlay |
 | [therealFoxster](https://github.com/therealFoxster) | DontEatMyContent |
-| [asdfzxcvbn](https://github.com/asdfzxcvbn) | cyan (IPA injection tool) |
 | [BillyCurtis](https://github.com/BillyCurtis) | Open in YouTube Safari extension |
+| [Chroma](https://chroma.pw) | Chroma for Spotify |
+| [whoeevee](https://github.com/whoeevee) | EeveeSpotify |
+| [asdfzxcvbn](https://github.com/asdfzxcvbn) | cyan (IPA injection tool) |
 | [MountainofPenguin](https://github.com/MountainofPenguin/Altstore-Repository) | Original repo this is forked from |
