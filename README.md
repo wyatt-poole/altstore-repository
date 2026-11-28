@@ -3,7 +3,7 @@
 Automatically rebuilt, tweaked IPAs for AltStore, SideStore and Feather:
 
 - **YouMod Pre-release**: YouTube with [YouMod](https://github.com/Tonwalter888/YouMod) built from its pre-release branch, plus a few companion tweaks
-- **Spotify + Chroma**: Spotify patched with [Chroma](https://chroma.pw), with the Watch app put back. Variants with [EeveeSpotify](https://github.com/SideloadLabs/EeveeSpotifyReincarnated) have their own source URLs ([below](#other-spotify-variants))
+- **Spotify + Chroma**: Spotify patched with [Chroma](https://chroma.pw). Variants with [EeveeSpotify](https://github.com/SideloadLabs/EeveeSpotifyReincarnated) have their own source URLs ([below](#other-spotify-variants))
 
 Each app has its own GitHub Actions pipeline. Both publish to the same source.
 
@@ -39,7 +39,7 @@ https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 
 ### Spotify + Chroma
 
-The source shows the Chroma version in the app's name (e.g. *Spotify + Chroma + Watch (Chroma 1.2.0-beta.3)*). The home-screen name stays *Spotify*.
+The source shows the Chroma version in the app's name (e.g. *Spotify + Chroma (Chroma 1.2.0-beta.3)*). The home-screen name stays *Spotify*.
 
 | | |
 |---|---|
@@ -91,7 +91,7 @@ A failed build is retried by the next scheduled check, so the repo does not get 
 
 ### Other Spotify variants
 
-The main source above has **Spotify + Chroma + Watch**, or plain Chroma if the base IPA has no Watch app. Each variant also has its own source. Add only the one you want, since they share Spotify's bundle ID and replace each other:
+The main source above has plain **Spotify + Chroma**. Each variant also has its own source. Add only the one you want, since they share Spotify's bundle ID and replace each other:
 
 | Variant | Source URL |
 |---|---|
@@ -101,7 +101,7 @@ The main source above has **Spotify + Chroma + Watch**, or plain Chroma if the b
 | Chroma + Eevee | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma-eevee.json` |
 
 - **Eevee:** EeveeSpotify mainly unlocks Premium features on free accounts. If you pay for Premium, skip it: it overrides the account checks Spotify relies on and can break things like downloads.
-- **Watch** (experimental): Chroma removes the Watch app, and these variants put it back. SideStore/AltStore don't install apps to the watch, so it needs a paid Apple ID and a signer that handles Watch apps, such as Sideloadly. The phone app works either way.
+- **Watch** (experimental): Chroma removes the Watch app, and these variants put it back. **They don't install through SideStore/AltStore.** Those rename the app for your Apple ID (e.g. `com.spotify.client.ABCDE12345`) but not the Watch app's link to it, so iOS rejects the install (`InvalidCompanionAppBundleIdentifier`). Use a signer that handles Watch apps, such as Sideloadly with a paid Apple ID.
 - **CarPlay** won't appear in sideloaded Spotify. It needs Apple's CarPlay audio entitlement in the signing profile, which Apple grants only on request. A tweak or a different bundle ID can't add it.
 
 Variants are defined in [`chroma-variants.json`](chroma-variants.json).
