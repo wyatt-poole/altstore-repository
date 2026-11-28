@@ -29,6 +29,8 @@ env:
   DOWNLOAD_BASE_URL: ${{ vars.DOWNLOAD_BASE_URL }}
   # Private repo holding decrypt.day IPAs, filled by the runner on your Mac
   IPA_CACHE_REPO: ${{ vars.IPA_CACHE_REPO || 'wyatt-poole/ipa-cache' }}
+  # SideStore installs Spotify as com.spotify.client.<team ID>; the Watch variants are pointed at that
+  SIDESTORE_TEAM_ID: ${{ vars.SIDESTORE_TEAM_ID || 'N228KQ7JL6' }}
 
 jobs:
   build:
@@ -104,7 +106,11 @@ jobs:
           BUILD="${{ steps.fetch.outputs.spotify_ver }}.${{ github.run_number }}"
           cp chroma_patched.ipa Spotify-Chroma.ipa
           cp chroma_patched.ipa Spotify-Chroma-Watch.ipa
-          if ! python scripts/chroma/update_repo.py restore-watch base_spotify.ipa Spotify-Chroma-Watch.ipa; then
+          if python scripts/chroma/update_repo.py restore-watch base_spotify.ipa Spotify-Chroma-Watch.ipa; then
+            if [ -n "$SIDESTORE_TEAM_ID" ]; then
+              python scripts/chroma/update_repo.py watch-companion Spotify-Chroma-Watch.ipa "com.spotify.client.$SIDESTORE_TEAM_ID"
+            fi
+          else
             echo "::warning::Base IPA has no Watch app, so the Watch variants are skipped"
             rm Spotify-Chroma-Watch.ipa
           fi

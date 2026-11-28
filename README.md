@@ -101,7 +101,7 @@ The main source above has plain **Spotify + Chroma**. Each variant also has its 
 | Chroma + Eevee | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma-eevee.json` |
 
 - **Eevee:** EeveeSpotify mainly unlocks Premium features on free accounts. If you pay for Premium, skip it: it overrides the account checks Spotify relies on and can break things like downloads.
-- **Watch** (experimental): Chroma removes the Watch app, and these variants put it back. **They don't install through SideStore/AltStore.** Those rename the app for your Apple ID (e.g. `com.spotify.client.ABCDE12345`) but not the Watch app's link to it, so iOS rejects the install (`InvalidCompanionAppBundleIdentifier`). Use a signer that handles Watch apps, such as Sideloadly with a paid Apple ID.
+- **Watch** (experimental): Chroma removes the Watch app, and these variants put it back. SideStore/AltStore rename the app for your Apple ID (`com.spotify.client.<team ID>`) but not the Watch app's link to it, which iOS rejects (`InvalidCompanionAppBundleIdentifier`). So the Watch variants are built with that link already pointing at `com.spotify.client.<SIDESTORE_TEAM_ID>`. Set the variable to the suffix your SideStore install shows (it's in that error message). Signers that keep the original bundle ID, such as Sideloadly, need `SIDESTORE_TEAM_ID` set to empty instead. Experimental: needs a paid Apple ID for the extra app IDs.
 - **CarPlay** won't appear in sideloaded Spotify. It needs Apple's CarPlay audio entitlement in the signing profile, which Apple grants only on request. A tweak or a different bundle ID can't add it.
 
 Variants are defined in [`chroma-variants.json`](chroma-variants.json).
@@ -141,6 +141,7 @@ Repository variables (Settings → Secrets and variables → Actions → Variabl
 | `CHROMA_CHANNEL` | `beta` | `beta` builds the newest kit; `stable` builds the one chroma.pw marks *recommended* |
 | `EEVEE_REPOS` | `SideloadLabs/EeveeSpotifyReincarnated NotDarkn/EeveePrebuilt` | repos tried in order for the newest rootless EeveeSpotify `.deb`. If none has one, only the Eevee variants are skipped |
 | `IPA_CACHE_REPO` | `wyatt-poole/ipa-cache` | private repo holding decrypt.day IPAs |
+| `SIDESTORE_TEAM_ID` | `N228KQ7JL6` | suffix SideStore adds to bundle IDs on your Apple ID. The Watch variants point the Watch app at `com.spotify.client.<this>`. Empty for other signers |
 | `BASE_IPA_URL` | | always use this decrypted IPA instead of searching |
 | `DOWNLOAD_BASE_URL` | | Worker URL if this repo is ever made private (see [`cloudflare/worker.js`](cloudflare/worker.js)) |
 

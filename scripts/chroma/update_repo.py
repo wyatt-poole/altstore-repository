@@ -8,6 +8,9 @@
   update_repo.py restore-watch BASE_IPA IPA
       Copy the Watch app from BASE_IPA back into IPA (Chroma strips it).
 
+  update_repo.py watch-companion IPA BUNDLE_ID
+      Set the Watch app's WKCompanionAppBundleIdentifier (for SideStore's renamed bundle ID).
+
   update_repo.py TAG SPOTIFY_VER CHROMA_VER REPO_SLUG [--build N] [--eevee VER]
       For each variant in chroma-variants.json whose IPA was built, add the build to
       that variant's feeds (keeping the newest 3 versions). If DOWNLOAD_BASE_URL is set
@@ -89,6 +92,21 @@ def restore_watch(base: Path, ipa: Path):
             if name not in present:
                 z.writestr(info, data, compress_type=zipfile.ZIP_STORED if info.is_dir() else zipfile.ZIP_DEFLATED)
     print(f"Restored {len(watch)} Watch entries from {base.name}")
+
+
+def watch_companion(ipa: Path, companion: str):
+    """Point the Watch app at the bundle ID the iPhone app will have once installed.
+
+    SideStore appends your team ID to the app's bundle ID (com.spotify.client.ABCDE12345) but
+    leaves the Watch app's WKCompanionAppBundleIdentifier alone, which iOS rejects."""
+    def edit(name, data):
+        if re.fullmatch(r"Payload/[^/]+\.app/Watch/[^/]+\.app/Info\.plist", name):
+            info = plistlib.loads(data)
+            print(f"{name}: WKCompanionAppBundleIdentifier {info.get('WKCompanionAppBundleIdentifier')} -> {companion}")
+            info["WKCompanionAppBundleIdentifier"] = companion
+            return plistlib.dumps(info, fmt=plistlib.FMT_BINARY)
+        return data
+    rewrite_ipa(ipa, edit)
 
 
 def spotify_icon_url() -> str:
@@ -218,13 +236,15 @@ def update_variants(a):
 
 
 def main(argv):
-    if argv and argv[0] in ("stamp", "restore-watch"):
+    if argv and argv[0] in ("stamp", "restore-watch", "watch-companion"):
         if len(argv) != 3:
-            sys.exit("usage: update_repo.py stamp IPA BUILD | restore-watch BASE_IPA IPA")
+            sys.exit("usage: update_repo.py stamp IPA BUILD | restore-watch BASE_IPA IPA | watch-companion IPA BUNDLE_ID")
         if argv[0] == "stamp":
             stamp(Path(argv[1]), argv[2])
-        else:
+        elif argv[0] == "restore-watch":
             restore_watch(Path(argv[1]), Path(argv[2]))
+        else:
+            watch_companion(Path(argv[1]), argv[2])
         return
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("tag")
