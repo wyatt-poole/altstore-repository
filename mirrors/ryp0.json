@@ -51492,11 +51492,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/c22dev/muguet",
       "iconURL": "https://raw.githubusercontent.com/Sami-Wali/ryP0-repository/main/icons/muguet.png",
-      "localizedDescription": "A native Mach-O port for iOS/macOS of GTA V, with multiplayer",
+      "localizedDescription": "[Source code only, no IPA] A native Mach-O port for iOS/macOS of GTA V, with multiplayer",
       "name": "GTA 5",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/c22dev/muguet",
+          "downloadURL": "https://github.com/c22dev/muguet",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51507,11 +51515,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/mianmuhammadse/nxnative",
       "iconURL": "https://avatars.githubusercontent.com/u/157485948?v=4",
-      "localizedDescription": "Switch games running natively on iPhone, iPad and Mac: an NSP folder becomes an unsigned IPA (NSO rewriter, Horizon HLE host, NVN→Metal)",
+      "localizedDescription": "[Source code only, no IPA] Switch games running natively on iPhone, iPad and Mac: an NSP folder becomes an unsigned IPA (NSO rewriter, Horizon HLE host, NVN→Metal)",
       "name": "nxnative",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/mianmuhammadse/nxnative",
+          "downloadURL": "https://github.com/mianmuhammadse/nxnative",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51522,11 +51538,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/herrtenma/tomodachi-life-ios",
       "iconURL": "https://avatars.githubusercontent.com/u/204623914?v=4",
-      "localizedDescription": "Tomodachi Life: Living the Dream for iPhone: a native port. Bring your own game.",
+      "localizedDescription": "[Source code only, no IPA] Tomodachi Life: Living the Dream for iPhone: a native port. Bring your own game.",
       "name": "tomodachi-life-ios",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/herrtenma/tomodachi-life-ios",
+          "downloadURL": "https://github.com/herrtenma/tomodachi-life-ios",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51537,11 +51561,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/c22dev/mush8",
       "iconURL": "https://avatars.githubusercontent.com/u/102235607?v=4",
-      "localizedDescription": "A native Mach-O iOS/macOS port of Mario Kart 8 Deluxe, with LAN, online and wireless multiplayer",
+      "localizedDescription": "[Source code only, no IPA] A native Mach-O iOS/macOS port of Mario Kart 8 Deluxe, with LAN, online and wireless multiplayer",
       "name": "mush8",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/c22dev/mush8",
+          "downloadURL": "https://github.com/c22dev/mush8",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51552,11 +51584,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/LNPANDY/NX2Apple",
       "iconURL": "https://avatars.githubusercontent.com/u/90243050?v=4",
-      "localizedDescription": "Play your own Switch games on iPhone/iPad — GUI fork of nxnative: RomFS archiving, 48 games, auto-sync",
+      "localizedDescription": "[Source code only, no IPA] Play your own Switch games on iPhone/iPad — GUI fork of nxnative: RomFS archiving, 48 games, auto-sync",
       "name": "NX2Apple",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/LNPANDY/NX2Apple",
+          "downloadURL": "https://github.com/LNPANDY/NX2Apple",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51567,11 +51607,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/ly05010419/MacNativeGames",
       "iconURL": "https://avatars.githubusercontent.com/u/1425386?v=4",
-      "localizedDescription": "Play your own Tears of the Kingdom and Breath of the Wild natively on Apple silicon Mac, iPhone and iPad. Not an emulator: the game's ARM64 code runs directly, NVN rebuilt on Metal. Bring your own game.",
+      "localizedDescription": "[Source code only, no IPA] Play your own Tears of the Kingdom and Breath of the Wild natively on Apple silicon Mac, iPhone and iPad. Not an emulator: the game's ARM64 code runs directly, NVN rebuilt on Metal. Bring your own game.",
       "name": "MacNativeGames",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/ly05010419/MacNativeGames",
+          "downloadURL": "https://github.com/ly05010419/MacNativeGames",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51582,11 +51630,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/seedds/nxnative",
       "iconURL": "https://avatars.githubusercontent.com/u/3463322?v=4",
-      "localizedDescription": "Switch games running natively on iPhone, iPad and Mac: an NSP folder becomes an unsigned IPA (NSO rewriter, Horizon HLE host, NVN→Metal)",
+      "localizedDescription": "[Source code only, no IPA] Switch games running natively on iPhone, iPad and Mac: an NSP folder becomes an unsigned IPA (NSO rewriter, Horizon HLE host, NVN→Metal)",
       "name": "nxnative",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/seedds/nxnative",
+          "downloadURL": "https://github.com/seedds/nxnative",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51597,11 +51653,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/chrissotraidis/utp",
       "iconURL": "https://avatars.githubusercontent.com/u/56282582?v=4",
-      "localizedDescription": "UTP hosts the full Unreal Tournament 99 game on iPhone and iPad with native Metal rendering, touch and Xbox controller play, automatic game-file setup, and original online servers.",
+      "localizedDescription": "[Source code only, no IPA] UTP hosts the full Unreal Tournament 99 game on iPhone and iPad with native Metal rendering, touch and Xbox controller play, automatic game-file setup, and original online servers.",
       "name": "utp",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/chrissotraidis/utp",
+          "downloadURL": "https://github.com/chrissotraidis/utp",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51612,11 +51676,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/ThatGuyMcd/DKR-R",
       "iconURL": "https://avatars.githubusercontent.com/u/246780704?v=4",
-      "localizedDescription": "Diddy Kong Racing - Recompiled (By ThatGuyMcd)",
+      "localizedDescription": "[Source code only, no IPA] Diddy Kong Racing - Recompiled (By ThatGuyMcd)",
       "name": "DKR-R",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/ThatGuyMcd/DKR-R",
+          "downloadURL": "https://github.com/ThatGuyMcd/DKR-R",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51627,11 +51699,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/cheemu21/plumber-racer-2",
       "iconURL": "https://avatars.githubusercontent.com/u/130556833?v=4",
-      "localizedDescription": "Plumber Racer 2: Mario Kart World on iPhone and Mac with nxnative. Bring your own game dump: no game files included.",
+      "localizedDescription": "[Source code only, no IPA] Plumber Racer 2: Mario Kart World on iPhone and Mac with nxnative. Bring your own game dump: no game files included.",
       "name": "plumber-racer-2",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/cheemu21/plumber-racer-2",
+          "downloadURL": "https://github.com/cheemu21/plumber-racer-2",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51642,11 +51722,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/mempage4k/glue5",
       "iconURL": "https://avatars.githubusercontent.com/u/340904764?v=4",
-      "localizedDescription": "A native runtime for GTA V’s WebAssembly build, running on iOS, macOS, Android and Windows without JIT compilation.",
+      "localizedDescription": "[Source code only, no IPA] A native runtime for GTA V’s WebAssembly build, running on iOS, macOS, Android and Windows without JIT compilation.",
       "name": "glue5",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/mempage4k/glue5",
+          "downloadURL": "https://github.com/mempage4k/glue5",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51657,11 +51745,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/cheemu21/kid-with-sword-remake",
       "iconURL": "https://avatars.githubusercontent.com/u/130556833?v=4",
-      "localizedDescription": "Native port for iOS and macOS",
+      "localizedDescription": "[Source code only, no IPA] Native port for iOS and macOS",
       "name": "kid-with-sword-remake",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/cheemu21/kid-with-sword-remake",
+          "downloadURL": "https://github.com/cheemu21/kid-with-sword-remake",
+          "size": 0
+        }
+      ]
     },
     {
       "appType": "Static",
@@ -51672,11 +51768,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/dsi-hub/HookLink",
       "iconURL": "https://avatars.githubusercontent.com/u/260802842?v=4",
-      "localizedDescription": "The Legend of Zelda: Ocarina of Time (Switch 2 Edition) on iPhone, built on your Mac from your own copy of the game",
+      "localizedDescription": "[Source code only, no IPA] The Legend of Zelda: Ocarina of Time (Switch 2 Edition) on iPhone, built on your Mac from your own copy of the game",
       "name": "HookLink",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/dsi-hub/HookLink",
+          "downloadURL": "https://github.com/dsi-hub/HookLink",
+          "size": 0
+        }
+      ]
     },
     {
       "bundleIdentifier": "source-port-8707e6c89298bf2fe73b9a56566b0991",
@@ -51686,11 +51790,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/NightSightProductions/DOOM-Recomp",
       "iconURL": "https://github.com/NightSightProductions.png",
-      "localizedDescription": "Native Apple Silicon port of DOOM (2016) by static recompilation - bring your own copy",
+      "localizedDescription": "[Source code only, no IPA] Native Apple Silicon port of DOOM (2016) by static recompilation - bring your own copy",
       "name": "DOOM-Recomp",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/NightSightProductions/DOOM-Recomp",
+          "downloadURL": "https://github.com/NightSightProductions/DOOM-Recomp",
+          "size": 0
+        }
+      ]
     },
     {
       "bundleIdentifier": "source-port-f17158cca530a4c69aade93511842038",
@@ -51700,11 +51812,19 @@
       "githubProjectCard": false,
       "githubURL": "https://github.com/Alextechgamer/bo2-ios",
       "iconURL": "https://github.com/Alextechgamer.png",
-      "localizedDescription": "iOS launcher, input controls, private server transport and packaging source",
+      "localizedDescription": "[Source code only, no IPA] iOS launcher, input controls, private server transport and packaging source",
       "name": "bo2-ios",
       "portDistribution": "source-code",
       "updatePolicy": "static",
-      "versions": []
+      "versions": [
+        {
+          "version": "0",
+          "date": "2026-11-28T01:03:22Z",
+          "localizedDescription": "Source code only, no IPA to install. Build it yourself: https://github.com/Alextechgamer/bo2-ios",
+          "downloadURL": "https://github.com/Alextechgamer/bo2-ios",
+          "size": 0
+        }
+      ]
     }
   ],
   "categories": [
