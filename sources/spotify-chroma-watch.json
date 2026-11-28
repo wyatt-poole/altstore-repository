@@ -1,0 +1,46 @@
+{
+  "name": "Spotify + Chroma + Watch",
+  "identifier": "com.wyatt-poole.spotify-chroma-watch",
+  "apiVersion": "v2",
+  "subtitle": "Auto-built Spotify with Chroma",
+  "description": "Unofficial Spotify + Chroma + Watch IPA, rebuilt automatically when Chroma updates. More variants: https://github.com/wyatt-poole/altstore-repository#spotify--chroma",
+  "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
+  "website": "https://github.com/wyatt-poole/altstore-repository",
+  "tintColor": "1DB954",
+  "apps": [
+    {
+      "bundleIdentifier": "com.spotify.client",
+      "developerName": "Chroma",
+      "subtitle": "Chroma 1.1.0-beta.2 · Spotify 9.1.90",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
+      "tintColor": "1DB954",
+      "category": "entertainment",
+      "screenshots": [],
+      "versions": [
+        {
+          "version": "9.1.90",
+          "buildVersion": "9.1.90.3",
+          "date": "2026-11-28T00:44:03Z",
+          "localizedDescription": "Spotify 9.1.90 + Chroma 1.1.0-beta.2 + Watch app. Older Chroma: the newest (Chroma 1.2.0-beta.3 for Spotify 9.1.98) is waiting on a decrypted Spotify IPA. This updates automatically once one is available.",
+          "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.1.0-beta.2-spotify-9.1.90/Spotify-Chroma-Watch.ipa",
+          "size": 164328367,
+          "sha256": "08caff89d5fba09560be0f6921672943d953fe6ac72c9070693bee641f32e37b",
+          "minOSVersion": "16.1"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      },
+      "name": "Spotify + Chroma + Watch (Chroma 1.1.0-beta.2)",
+      "localizedDescription": "Spotify patched with Chroma (chroma.pw): shaders behind the player, word-by-word lyrics, lock-screen lyrics and more. The Watch app is included (experimental: needs a paid Apple ID and a signer that installs Watch apps). Rebuilt automatically when Chroma updates.",
+      "version": "9.1.90",
+      "versionDate": "2026-11-28T00:44:03Z",
+      "versionDescription": "Spotify 9.1.90 + Chroma 1.1.0-beta.2 + Watch app. Older Chroma: the newest (Chroma 1.2.0-beta.3 for Spotify 9.1.98) is waiting on a decrypted Spotify IPA. This updates automatically once one is available.",
+      "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.1.0-beta.2-spotify-9.1.90/Spotify-Chroma-Watch.ipa",
+      "size": 164328367,
+      "sha256": "08caff89d5fba09560be0f6921672943d953fe6ac72c9070693bee641f32e37b"
+    }
+  ],
+  "news": []
+}
