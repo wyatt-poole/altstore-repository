@@ -43,8 +43,8 @@ The source shows the Chroma version in the app's name (e.g. *Spotify + Chroma + 
 
 | | |
 |---|---|
-| **Spotify version** | 9.1.90 |
-| **Chroma version** | 1.1.0-beta.2 |
+| **Spotify version** | 9.1.98 |
+| **Chroma version** | 1.2.0-beta.3 |
 | **Spotify last built** | November 28, 2026 |
 
 ---

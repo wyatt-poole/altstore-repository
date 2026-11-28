@@ -11,12 +11,22 @@
     {
       "bundleIdentifier": "com.spotify.client",
       "developerName": "Chroma",
-      "subtitle": "Chroma 1.1.0-beta.2 · Spotify 9.1.90",
+      "subtitle": "Chroma 1.2.0-beta.3 · Spotify 9.1.98",
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
       "tintColor": "1DB954",
       "category": "entertainment",
       "screenshots": [],
       "versions": [
+        {
+          "version": "9.1.98",
+          "buildVersion": "9.1.98.4",
+          "date": "2026-11-28T00:53:20Z",
+          "localizedDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3 + EeveeSpotify SideloadLabs/EeveeSpotifyReincarnated@v7.5.0.",
+          "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma-Eevee.ipa",
+          "size": 157200800,
+          "sha256": "3cc79d486aa2c2901e1cde9acd7ccc7894d36b1c9646c6b9f8fdff1ce1fa63ae",
+          "minOSVersion": "16.1"
+        },
         {
           "version": "9.1.90",
           "buildVersion": "9.1.90.3",
@@ -32,14 +42,14 @@
         "entitlements": [],
         "privacy": {}
       },
-      "name": "Spotify + Chroma + Eevee (Chroma 1.1.0-beta.2)",
+      "name": "Spotify + Chroma + Eevee (Chroma 1.2.0-beta.3)",
       "localizedDescription": "Spotify patched with Chroma (chroma.pw): shaders behind the player, word-by-word lyrics, lock-screen lyrics and more. EeveeSpotify is included. Rebuilt automatically when Chroma updates.",
-      "version": "9.1.90",
-      "versionDate": "2026-11-28T00:44:04Z",
-      "versionDescription": "Spotify 9.1.90 + Chroma 1.1.0-beta.2 + EeveeSpotify SideloadLabs/EeveeSpotifyReincarnated@v7.5.0. Older Chroma: the newest (Chroma 1.2.0-beta.3 for Spotify 9.1.98) is waiting on a decrypted Spotify IPA. This updates automatically once one is available.",
-      "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.1.0-beta.2-spotify-9.1.90/Spotify-Chroma-Eevee.ipa",
-      "size": 151690076,
-      "sha256": "86052594f871edecfaf9358846604809eee8d99038d933198447e9ab5e98098a"
+      "version": "9.1.98",
+      "versionDate": "2026-11-28T00:53:20Z",
+      "versionDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3 + EeveeSpotify SideloadLabs/EeveeSpotifyReincarnated@v7.5.0.",
+      "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma-Eevee.ipa",
+      "size": 157200800,
+      "sha256": "3cc79d486aa2c2901e1cde9acd7ccc7894d36b1c9646c6b9f8fdff1ce1fa63ae"
     }
   ],
   "news": []
