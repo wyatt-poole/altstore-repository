@@ -55,20 +55,30 @@ def finish_without_build(reason):
 
 # ---------------------------------------------------------------- version discovery
 
-def discover_versions():
-    """Return (chroma_ver, spotify_ver). The JSON API is what the patch page itself reads."""
+def discover_kits():
+    """Chroma kits to try, best first, as (chroma_ver, spotify_ver).
+
+    The first is the kit chroma.pw recommends (or the newest, on the beta channel). The rest
+    are older kits for other Spotify versions, used when nobody has uploaded a decrypted IPA
+    for the newest one yet. The JSON API is what the patch page itself reads.
+    """
     channel = os.environ.get("CHROMA_CHANNEL", "stable").strip().lower()
     try:
         r = session.get("https://chroma.pw/api/patcher", timeout=30)
         r.raise_for_status()
         kits = r.json()["kits"]
-        if channel == "beta":
-            kit = kits[0]
-        else:
-            kit = next((k for k in kits if k.get("recommended")), None) \
-                or next(k for k in kits if not k.get("prerelease"))
-        log(f"chroma.pw API: Chroma {kit['version']} for Spotify {kit['spotify']} ({channel})")
-        return kit["version"], kit["spotify"]
+        pool = kits if channel == "beta" else [k for k in kits if not k.get("prerelease")]
+        first = kits[0] if channel == "beta" else \
+            next((k for k in kits if k.get("recommended")), None) or pool[0]
+        ordered = [first] + [k for k in pool if k is not first]
+        # Newest kit per Spotify version, at most 3 Spotify versions.
+        result, seen = [], set()
+        for k in ordered:
+            if k["spotify"] not in seen and len(seen) < 3:
+                seen.add(k["spotify"])
+                result.append((k["version"], k["spotify"]))
+        log(f"chroma.pw API ({channel}): " + ", ".join(f"Chroma {c} for Spotify {s}" for c, s in result))
+        return result
     except Exception as e:  # noqa: BLE001 - fall back to scraping on any API change
         log(f"::warning::chroma.pw API failed ({e}); scraping the patch page instead")
 
@@ -83,7 +93,7 @@ def discover_versions():
     if not m:
         raise SystemExit("::error::Could not find 'Chroma X for Spotify Y' on chroma.pw/patch")
     log(f"chroma.pw page: Chroma {m.group(1)} for Spotify {m.group(2)}")
-    return m.group(1), m.group(2)
+    return [(m.group(1), m.group(2))]
 
 
 # ---------------------------------------------------------------- IPA validation
@@ -233,10 +243,11 @@ def source_release_bodies(repo):
             text = f"{rel.get('tag_name', '')} {rel.get('name') or ''} {rel.get('body') or ''}"
             if ver not in text:
                 continue
-            assets = [a for a in rel.get("assets", []) if a["name"].endswith(".ipa")]
-            stock = [a for a in assets if UNPATCHED.search(a["name"]) or not PATCHED.search(a["name"])]
-            for a in stock:
-                yield a["browser_download_url"]
+            for a in rel.get("assets", []):
+                name = a["name"]
+                # "Unpatched" EeveePrebuilt builds still contain EeveeSpotify, so skip any Eevee name.
+                if name.endswith(".ipa") and ver in name and not PATCHED.search(name):
+                    yield a["browser_download_url"]
             yield from body_candidates(rel.get("body"))
     return gen
 
@@ -248,7 +259,8 @@ def source_decrypt_day(ver):
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page(user_agent=UA)
-            page.goto(f"https://decrypt.day/app/id{SPOTIFY_APP_STORE_ID}", wait_until="networkidle", timeout=60_000)
+            page.goto(f"https://decrypt.day/app/id{SPOTIFY_APP_STORE_ID}", wait_until="domcontentloaded", timeout=45_000)
+            page.wait_for_timeout(8_000)
             links = page.eval_on_selector_all(
                 "a[href]", "els => els.map(e => [e.href, e.innerText + ' ' + (e.closest('li,tr,div')?.innerText || '')])")
             browser.close()
@@ -268,35 +280,45 @@ SOURCES = [
 ]
 
 
-def main():
-    chroma_ver, spotify_ver = discover_versions()
-    state = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
-    force = os.environ.get("FORCE_BUILD", "").lower() == "true"
-    if not force and state.get("chroma") == chroma_ver and state.get("spotify") == spotify_ver:
-        finish_without_build("Already up to date")
-
-    if OUT_FILE.exists():
-        OUT_FILE.unlink()
-
+def find_ipa(spotify_ver):
+    """Download a valid base IPA for spotify_ver; return the source name, or None."""
     override = os.environ.get("BASE_IPA_URL", "").strip()
     sources = [("BASE_IPA_URL", lambda _v: iter([override]))] if override else SOURCES
-
     for name, finder in sources:
         log(f"Searching {name} for Spotify {spotify_ver}")
         seen = set()
         try:
             for url in finder(spotify_ver):
-                if url in seen:
-                    continue
-                seen.add(url)
-                if try_download(url, spotify_ver, name):
-                    set_output(should_build="true", chroma_ver=chroma_ver,
-                               spotify_ver=spotify_ver, base_source=name)
-                    return
+                if url not in seen:
+                    seen.add(url)
+                    if try_download(url, spotify_ver, name):
+                        return name
         except requests.RequestException as e:
             log(f"  {name} failed: {e}")
+    return None
 
-    log(f"::warning::Target Spotify {spotify_ver} not yet available in fallback sources")
+
+def main():
+    kits = discover_kits()
+    state = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
+    force = os.environ.get("FORCE_BUILD", "").lower() == "true"
+    if os.environ.get("BASE_IPA_URL", "").strip():
+        kits = kits[:1]  # a pinned IPA is meant for the newest kit
+
+    for i, (chroma_ver, spotify_ver) in enumerate(kits):
+        if not force and state.get("chroma") == chroma_ver and state.get("spotify") == spotify_ver:
+            finish_without_build("Already up to date" if i == 0 else
+                                 f"Already built Chroma {chroma_ver} for Spotify {spotify_ver}, the newest available")
+        if OUT_FILE.exists():
+            OUT_FILE.unlink()
+        source = find_ipa(spotify_ver)
+        if source:
+            if i:
+                log(f"::warning::Spotify {kits[0][1]} isn't available yet; building older Chroma {chroma_ver} for Spotify {spotify_ver}")
+            set_output(should_build="true", chroma_ver=chroma_ver, spotify_ver=spotify_ver, base_source=source)
+            return
+        log(f"::warning::Target Spotify {spotify_ver} not yet available in fallback sources")
+
     set_output(should_build="false")
 
 

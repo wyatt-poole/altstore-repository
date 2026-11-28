@@ -105,7 +105,7 @@ Optional: put the Watch app back, inject the latest EeveeSpotify .deb with cyan
 A GitHub release and apps.json are updated with a unique build number
 ```
 
-If Chroma moves to a Spotify version nobody has uploaded a decrypted IPA for yet, the run logs a warning and ends green. The next check tries again.
+If nobody has uploaded a decrypted IPA for the Spotify version the newest Chroma needs, it builds the newest older Chroma kit whose Spotify version is available (for example Chroma 1.0.1 for Spotify 9.1.90), and switches to the newest kit once that IPA appears. EeveePrebuilt and EeveeIPA only publish IPAs with EeveeSpotify already inside, so in practice PwEevee is the source of clean IPAs.
 
 Run **Build Spotify + Chroma & Update Repo** from the Actions tab for a manual build. `force` rebuilds the current version, and `base_ipa_url` uses a decrypted IPA link of your choice.
 
