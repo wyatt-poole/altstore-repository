@@ -28,38 +28,11 @@
         },
         {
           "version": "21.45.4",
-          "buildVersion": "21.45.4.7",
-          "date": "2026-11-27",
-          "localizedDescription": "YouTube 21.45.4 + YouMod v2.1.0-5fd9e6e\n\nRecent pre-release commits:\n- Update and fix things\n- Up\n- Update YM icon\n- Delete Icon.png\n- Update README.md\n- Fix and add new things\n- WIP: speedmaster hold-to-speed, remove glass tab bar, menu/action-sheet rework\n- Remove debugging leftover from DownloadQueue\n- Stacking pills/toasts, hide download pill\n- WIP: glass tab bar fixes, SeekOnFeed setting, sleep timer overlay time",
-          "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/v2.1.0-5fd9e6e/YouMod_2.1.0-5fd9e6e_21.45.4.ipa",
-          "size": 162780858,
-          "minOSVersion": "14.0"
-        },
-        {
-          "version": "21.45.4",
-          "buildVersion": "21.45.4.6",
-          "date": "2026-11-27",
-          "localizedDescription": "YouTube 21.45.4 + YouMod v2.1.0-5fd9e6e\n\nRecent pre-release commits:\n- Update and fix things\n- Up\n- Update YM icon\n- Delete Icon.png\n- Update README.md\n- Fix and add new things\n- WIP: speedmaster hold-to-speed, remove glass tab bar, menu/action-sheet rework\n- Remove debugging leftover from DownloadQueue\n- Stacking pills/toasts, hide download pill\n- WIP: glass tab bar fixes, SeekOnFeed setting, sleep timer overlay time",
-          "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/v2.1.0-5fd9e6e/YouMod_2.1.0-5fd9e6e_21.45.4.ipa",
-          "size": 162548934,
-          "minOSVersion": "14.0"
-        },
-        {
-          "version": "21.45.4",
           "buildVersion": "21.45.4.5",
           "date": "2026-11-26",
           "localizedDescription": "YouTube 21.45.4 + YouMod v2.1.0-0473ddb\n\nRecent pre-release commits:\n- Up\n- Update YM icon\n- Delete Icon.png\n- Update README.md\n- Fix and add new things\n- WIP: speedmaster hold-to-speed, remove glass tab bar, menu/action-sheet rework\n- Remove debugging leftover from DownloadQueue\n- Stacking pills/toasts, hide download pill\n- WIP: glass tab bar fixes, SeekOnFeed setting, sleep timer overlay time\n- fix typo in SABRDownload",
           "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/v2.1.0-0473ddb/YouMod_2.1.0-0473ddb_21.45.4.ipa",
           "size": 162548962,
-          "minOSVersion": "14.0"
-        },
-        {
-          "version": "21.45.4",
-          "buildVersion": "21.45.4.4",
-          "date": "2026-11-26",
-          "localizedDescription": "YouTube 21.45.4 + YouMod v2.1.0-0473ddb\n\nRecent pre-release commits:\n- Up\n- Update YM icon\n- Delete Icon.png\n- Update README.md\n- Fix and add new things\n- WIP: speedmaster hold-to-speed, remove glass tab bar, menu/action-sheet rework\n- Remove debugging leftover from DownloadQueue\n- Stacking pills/toasts, hide download pill\n- WIP: glass tab bar fixes, SeekOnFeed setting, sleep timer overlay time\n- fix typo in SABRDownload",
-          "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/v2.1.0-0473ddb/YouMod_2.1.0-0473ddb_21.45.4.ipa",
-          "size": 155735224,
           "minOSVersion": "14.0"
         }
       ],

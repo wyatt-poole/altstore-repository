@@ -189,7 +189,7 @@ jobs:
           done
           echo "Injecting: $tweaks"
           cyan -i youtube.ipa \
-               -o "YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}.ipa" \
+               -o "YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}_${{ github.run_number }}.ipa" \
                -uwf $tweaks \
                -n "YouTube" \
                -b com.google.ios.youtube
@@ -198,7 +198,7 @@ jobs:
       - name: Set IPA build number
         run: |
           cd ${{ github.workspace }}
-          IPA="YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}.ipa"
+          IPA="YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}_${{ github.run_number }}.ipa"
           BUILD_NUM="${{ steps.cfg.outputs.yt_ver }}.${{ github.run_number }}"
           rm -rf ipa_tmp && mkdir ipa_tmp && cd ipa_tmp
           unzip -q "../$IPA"
@@ -215,7 +215,7 @@ jobs:
       - name: Get IPA size
         id: size
         run: |
-          SIZE=$(stat -f%z "${{ github.workspace }}/YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}.ipa")
+          SIZE=$(stat -f%z "${{ github.workspace }}/YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}_${{ github.run_number }}.ipa")
           echo "size=$SIZE" >> $GITHUB_OUTPUT
 
       # ── Release ────────────────────────────────────────────────────────────
@@ -228,7 +228,7 @@ jobs:
             Auto-updated YouMod IPA for YouTube ${{ steps.cfg.outputs.yt_ver }}
             YouMod version: ${{ env.YOUMOD_VERSION }}
             Built by GitHub Actions run ${{ github.run_id }}
-          files: ${{ github.workspace }}/YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}.ipa
+          files: ${{ github.workspace }}/YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}_${{ github.run_number }}.ipa
           make_latest: true
           prerelease: false
 
@@ -238,7 +238,7 @@ jobs:
           export TODAY=$(date -u +%Y-%m-%d)
           export YT_VER="${{ steps.cfg.outputs.yt_ver }}"
           export YOUMOD_VERSION="${{ env.YOUMOD_VERSION }}"
-          export IPA_NAME="YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}.ipa"
+          export IPA_NAME="YouMod_${{ env.YOUMOD_VERSION }}_${{ steps.cfg.outputs.yt_ver }}_${{ github.run_number }}.ipa"
           export BUILD_NUM="${{ env.BUILD_NUM }}"
           export SIZE="${{ steps.size.outputs.size }}"
           REPO_USER="${{ github.repository_owner }}"
@@ -274,6 +274,9 @@ jobs:
               'minOSVersion': '14.0'
           }
       
+          # Rebuilds of one commit share a release; each has its own file, but drop any entry
+          # that points at the same URL so no entry's build number can mismatch its file.
+          versions = [v for v in versions if v.get('downloadURL') != download]
           versions.insert(0, new_version)
           data['apps'][0]['versions'] = versions[:5]
       
