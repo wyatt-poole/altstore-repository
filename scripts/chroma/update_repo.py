@@ -9,7 +9,8 @@
       Copy the Watch app from BASE_IPA back into IPA (Chroma strips it).
 
   update_repo.py watch-companion IPA BUNDLE_ID
-      Set the Watch app's WKCompanionAppBundleIdentifier (for SideStore's renamed bundle ID).
+      Re-prefix every bundle ID in the Watch app with BUNDLE_ID (the ID SideStore gives the
+      iPhone app, e.g. com.spotify.client.ABCDE12345).
 
   update_repo.py TAG SPOTIFY_VER CHROMA_VER REPO_SLUG [--build N] [--eevee VER]
       For each variant in chroma-variants.json whose IPA was built, add the build to
@@ -94,17 +95,33 @@ def restore_watch(base: Path, ipa: Path):
     print(f"Restored {len(watch)} Watch entries from {base.name}")
 
 
-def watch_companion(ipa: Path, companion: str):
-    """Point the Watch app at the bundle ID the iPhone app will have once installed.
+def watch_companion(ipa: Path, installed_id: str):
+    """Rename the Watch app to match the bundle ID the iPhone app gets once installed.
 
-    SideStore appends your team ID to the app's bundle ID (com.spotify.client.ABCDE12345) but
-    leaves the Watch app's WKCompanionAppBundleIdentifier alone, which iOS rejects."""
+    SideStore appends your team ID to the iPhone app's bundle ID (com.spotify.client ->
+    com.spotify.client.ABCDE12345) but leaves the Watch app untouched. iOS requires the Watch
+    app's IDs to start with the iPhone app's ID and its WKCompanionAppBundleIdentifier to equal
+    it, so every ID under Watch/ is re-prefixed: com.spotify.client.watchkitapp ->
+    com.spotify.client.ABCDE12345.watchkitapp (extensions and WKAppBundleIdentifier links too)."""
+    base = app_info(ipa)["CFBundleIdentifier"]
+
+    def reprefix(value):
+        if isinstance(value, dict):
+            return {k: reprefix(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [reprefix(v) for v in value]
+        if isinstance(value, str) and (value == base or value.startswith(base + ".")) \
+                and not value.startswith(installed_id):
+            return installed_id + value[len(base):]
+        return value
+
     def edit(name, data):
-        if re.fullmatch(r"Payload/[^/]+\.app/Watch/[^/]+\.app/Info\.plist", name):
+        if re.fullmatch(r"Payload/[^/]+\.app/Watch/.+/Info\.plist", name):
             info = plistlib.loads(data)
-            print(f"{name}: WKCompanionAppBundleIdentifier {info.get('WKCompanionAppBundleIdentifier')} -> {companion}")
-            info["WKCompanionAppBundleIdentifier"] = companion
-            return plistlib.dumps(info, fmt=plistlib.FMT_BINARY)
+            new = reprefix(info)
+            if new != info:
+                print(f"{name}: {info.get('CFBundleIdentifier')} -> {new.get('CFBundleIdentifier')}")
+                return plistlib.dumps(new, fmt=plistlib.FMT_BINARY)
         return data
     rewrite_ipa(ipa, edit)
 
