@@ -8,10 +8,10 @@
   update_repo.py restore-watch BASE_IPA IPA
       Copy the Watch app from BASE_IPA back into IPA (Chroma strips it).
 
-  update_repo.py TAG SPOTIFY_VER CHROMA_VER IPA_PATH REPO_SLUG [--build N] [--eevee VER]
-      Add this build to apps.json, keeping the newest 3 versions.
-      If DOWNLOAD_BASE_URL is set (e.g. a Cloudflare Worker fronting a private repo),
-      downloadURL becomes {DOWNLOAD_BASE_URL}/{TAG}/Spotify.ipa.
+  update_repo.py TAG SPOTIFY_VER CHROMA_VER REPO_SLUG [--build N] [--eevee VER]
+      For each variant in chroma-variants.json whose IPA was built, add the build to
+      that variant's feeds (keeping the newest 3 versions). If DOWNLOAD_BASE_URL is set
+      (e.g. a Cloudflare Worker fronting a private repo), downloads go through it.
 """
 
 import argparse
@@ -28,7 +28,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-APPS_JSON = ROOT / "apps.json"
+VARIANTS = ROOT / "chroma-variants.json"
 BUNDLE_ID = "com.spotify.client"
 KEEP_VERSIONS = 3
 APP_STORE_ID = "324684580"
@@ -82,7 +82,7 @@ def restore_watch(base: Path, ipa: Path):
                  if i.filename.startswith(tuple(app_dir + d for d in WATCH_DIRS))}
     if not watch:
         print("Base IPA has no Watch app; nothing to restore")
-        return
+        sys.exit(2)
     with zipfile.ZipFile(ipa, "a", zipfile.ZIP_DEFLATED) as z:
         present = set(z.namelist())
         for name, (info, data) in watch.items():
@@ -107,38 +107,39 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def default_source(owner: str, repo_url: str) -> dict:
+def default_source(owner: str, repo_url: str, feed: Path, name: str) -> dict:
     return {
-        "name": "Spotify + Chroma",
-        "identifier": f"com.{owner.lower()}.chroma-spotify",
+        "name": name,
+        "identifier": f"com.{owner.lower()}.{feed.stem}",
         "apiVersion": "v2",
         "subtitle": "Auto-built Spotify with Chroma",
-        "description": "Unofficial Spotify IPA patched with Chroma (chroma.pw), rebuilt automatically when Chroma updates.",
+        "description": f"Unofficial {name} IPA, rebuilt automatically when Chroma updates. "
+                       f"More variants: {repo_url}#spotify--chroma",
+        "iconURL": spotify_icon_url(),
         "website": repo_url,
+        "tintColor": "1DB954",
         "apps": [],
         "news": [],
     }
 
 
-def update_feed(a):
-    ipa = Path(a.ipa_path)
-    owner = a.repo_slug.split("/")[0]
-    repo_url = f"https://github.com/{a.repo_slug}"
+def update_feed(feed: Path, tag, spotify_ver, chroma_ver, ipa: Path, asset, repo_slug,
+                name="Spotify + Chroma", build=None, eevee=None, watch=False, newest=None):
+    owner = repo_slug.split("/")[0]
+    repo_url = f"https://github.com/{repo_slug}"
     base = os.environ.get("DOWNLOAD_BASE_URL", "").rstrip("/")
-    download_url = f"{base}/{a.tag}/Spotify.ipa" if base else f"{repo_url}/releases/download/{a.tag}/Spotify.ipa"
+    download_url = f"{base}/{tag}/{asset}" if base else f"{repo_url}/releases/download/{tag}/{asset}"
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     size = os.path.getsize(ipa)
     digest = sha256(ipa)
 
-    data = json.loads(APPS_JSON.read_text()) if APPS_JSON.exists() else default_source(owner, repo_url)
+    data = json.loads(feed.read_text()) if feed.exists() else default_source(owner, repo_url, feed, name)
     app = next((x for x in data.get("apps", []) if x.get("bundleIdentifier") == BUNDLE_ID), None)
     if app is None:
         app = {
-            "name": "Spotify + Chroma",
             "bundleIdentifier": BUNDLE_ID,
             "developerName": "Chroma",
             "subtitle": "Spotify with Chroma's shaders and lyrics",
-            "localizedDescription": "Spotify patched with Chroma: shaders behind the player, word-by-word lyrics, lock-screen lyrics and more.",
             "iconURL": spotify_icon_url(),
             "tintColor": "1DB954",
             "category": "entertainment",
@@ -147,12 +148,25 @@ def update_feed(a):
             "appPermissions": {"entitlements": [], "privacy": {}},
         }
         data.setdefault("apps", []).append(app)
+    extras = "".join([
+        " EeveeSpotify is included." if eevee else "",
+        " The Watch app is included (experimental: needs a paid Apple ID and a signer that installs Watch apps)." if watch else "",
+    ])
+    # Only the source listing shows this name; the home screen keeps the IPA's own "Spotify".
+    app["name"] = f"{name} (Chroma {chroma_ver})"
+    app["subtitle"] = f"Chroma {chroma_ver} · Spotify {spotify_ver}"
+    app["localizedDescription"] = ("Spotify patched with Chroma (chroma.pw): shaders behind the player, "
+                                   "word-by-word lyrics, lock-screen lyrics and more." + extras +
+                                   " Rebuilt automatically when Chroma updates.")
 
-    extras = f" + EeveeSpotify {a.eevee}" if a.eevee else ""
-    description = f"Spotify {a.spotify_ver} patched with Chroma {a.chroma_ver}{extras}."
+    parts = [f"Chroma {chroma_ver}"] + ([f"EeveeSpotify {eevee}"] if eevee else []) + (["Watch app"] if watch else [])
+    description = f"Spotify {spotify_ver} + " + " + ".join(parts) + "."
+    if newest:
+        description += (f" Older Chroma: the newest ({newest}) is waiting on a decrypted Spotify IPA. "
+                        "This updates automatically once one is available.")
     entry = {
-        "version": a.spotify_ver,
-        "buildVersion": a.build or a.spotify_ver,
+        "version": spotify_ver,
+        "buildVersion": build or spotify_ver,
         "date": now,
         "localizedDescription": description,
         "downloadURL": download_url,
@@ -173,9 +187,34 @@ def update_feed(a):
         "sha256": digest,
     })
 
-    APPS_JSON.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    print(f"apps.json: {a.spotify_ver} (build {entry['buildVersion']}) -> {download_url}")
-    print(f"  size {size}  sha256 {digest}")
+    feed.parent.mkdir(parents=True, exist_ok=True)
+    feed.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+    print(f"{feed.relative_to(ROOT)}: {name} {spotify_ver} (build {entry['buildVersion']}) -> {download_url}")
+
+
+def update_variants(a):
+    """Add every built variant in chroma-variants.json to its own feed, and the preferred
+    built variant to the main feed (apps.json, shared with YouMod)."""
+    cfg = json.loads(VARIANTS.read_text())
+    by_asset = {v["asset"]: v for v in cfg["variants"]}
+
+    def publish(v, feed):
+        update_feed(ROOT / feed, a.tag, a.spotify_ver, a.chroma_ver, ROOT / v["asset"], v["asset"], a.repo_slug,
+                    name=v["name"], build=a.build, eevee=a.eevee if v["eevee"] else None, watch=v["watch"],
+                    newest=a.newest or None)
+
+    for v in cfg["variants"]:
+        if (ROOT / v["asset"]).exists():
+            publish(v, v["feed"])
+        else:
+            print(f"skip {v['name']}: {v['asset']} was not built")
+
+    main = cfg["main_feed"]
+    pick = next((by_asset[x] for x in main["prefer"] if (ROOT / x).exists()), None)
+    if pick:
+        publish(pick, main["feed"])
+    else:
+        print(f"::warning::none of {main['prefer']} was built; {main['feed']} not updated")
 
 
 def main(argv):
@@ -191,11 +230,11 @@ def main(argv):
     p.add_argument("tag")
     p.add_argument("spotify_ver")
     p.add_argument("chroma_ver")
-    p.add_argument("ipa_path")
     p.add_argument("repo_slug")
-    p.add_argument("--build", help="CFBundleVersion stamped into the IPA")
-    p.add_argument("--eevee", help="EeveeSpotify version injected, if any")
-    update_feed(p.parse_args(argv))
+    p.add_argument("--build", help="CFBundleVersion stamped into the IPAs")
+    p.add_argument("--eevee", help="EeveeSpotify version in the Eevee variants")
+    p.add_argument("--newest", help="newest Chroma kit, when an older one was built as a fallback")
+    update_variants(p.parse_args(argv))
 
 
 if __name__ == "__main__":

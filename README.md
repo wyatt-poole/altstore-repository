@@ -3,7 +3,7 @@
 Automatically rebuilt, tweaked IPAs for AltStore, SideStore and Feather:
 
 - **YouMod Pre-release**: YouTube with [YouMod](https://github.com/Tonwalter888/YouMod) built from its pre-release branch, plus a few companion tweaks
-- **Spotify + Chroma**: Spotify patched with [Chroma](https://chroma.pw), optionally with [EeveeSpotify](https://github.com/whoeevee/EeveeSpotifyReincarnated)
+- **Spotify + Chroma**: Spotify patched with [Chroma](https://chroma.pw), with the Watch app put back. Variants with [EeveeSpotify](https://github.com/SideloadLabs/EeveeSpotifyReincarnated) have their own source URLs ([below](#other-spotify-variants))
 
 Each app has its own GitHub Actions pipeline. Both publish to the same source.
 
@@ -38,6 +38,8 @@ https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 | **Min iOS** | 14.0 |
 
 ### Spotify + Chroma
+
+The source shows the Chroma version in the app's name (e.g. *Spotify + Chroma + Watch (Chroma 1.2.0-beta.3)*). The home-screen name stays *Spotify*.
 
 | | |
 |---|---|
@@ -87,27 +89,48 @@ A failed build is retried by the next scheduled check, so the repo does not get 
 
 ## Spotify + Chroma
 
+### Other Spotify variants
+
+The main source above has **Spotify + Chroma + Watch**, or plain Chroma if the base IPA has no Watch app. Each variant also has its own source. Add only the one you want, since they share Spotify's bundle ID and replace each other:
+
+| Variant | Source URL |
+|---|---|
+| Chroma + Watch | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma-watch.json` |
+| Chroma | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma.json` |
+| Chroma + Eevee + Watch | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma-eevee-watch.json` |
+| Chroma + Eevee | `https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/sources/spotify-chroma-eevee.json` |
+
+- **Eevee:** EeveeSpotify mainly unlocks Premium features on free accounts. If you pay for Premium, skip it: it overrides the account checks Spotify relies on and can break things like downloads.
+- **Watch** (experimental): Chroma removes the Watch app, and these variants put it back. SideStore/AltStore don't install apps to the watch, so it needs a paid Apple ID and a signer that handles Watch apps, such as Sideloadly. The phone app works either way.
+- **CarPlay** won't appear in sideloaded Spotify. It needs Apple's CarPlay audio entitlement in the signing profile, which Apple grants only on request. A tweak or a different bundle ID can't add it.
+
+Variants are defined in [`chroma-variants.json`](chroma-variants.json).
+
 ### How the Build Works
 
 ```
-Scheduled workflow checks chroma.pw for a new Chroma kit (every 6 hours)
+Scheduled workflow checks chroma.pw for the newest Chroma kit (every 6 hours, betas included)
         ↓
 New Chroma or Spotify version? (chroma-state.json)
         ↓
 Download the matching decrypted Spotify IPA
-  PwEevee → EeveePrebuilt → EeveeIPA → decrypt.day
+  private IPA cache (decrypt.day, via your Mac) → PwEevee → EeveePrebuilt → EeveeIPA
   (only a decrypted, untweaked com.spotify.client of the exact version is accepted)
         ↓
 Run chroma.pw's in-browser patcher in headless Chromium, keeping Spotify's own icon
         ↓
-Optional: put the Watch app back, inject the latest EeveeSpotify .deb with cyan
+Build the variants: Watch app restored, EeveeSpotify injected with cyan
         ↓
-A GitHub release and apps.json are updated with a unique build number
+One GitHub release with every variant; apps.json and sources/*.json updated with a unique build number
 ```
 
-If nobody has uploaded a decrypted IPA for the Spotify version the newest Chroma needs, it builds the newest older Chroma kit whose Spotify version is available (for example Chroma 1.0.1 for Spotify 9.1.90), and switches to the newest kit once that IPA appears. EeveePrebuilt and EeveeIPA only publish IPAs with EeveeSpotify already inside, so in practice PwEevee is the source of clean IPAs.
+**When the newest Chroma's Spotify IPA isn't anywhere yet:**
+1. The build asks the private [`ipa-cache`](https://github.com/wyatt-poole/ipa-cache) repo to fetch it from decrypt.day. That runs once, on your Mac, then re-runs this build. decrypt.day blocks cloud servers, so the download can't happen here. Setup is in that repo's README. You can also upload the IPA there by hand.
+2. Meanwhile it builds the newest older Chroma whose Spotify is available. The listing says so and names the version it's waiting for.
 
-Run **Build Spotify + Chroma & Update Repo** from the Actions tab for a manual build. `force` rebuilds the current version, and `base_ipa_url` uses a decrypted IPA link of your choice.
+EeveePrebuilt and EeveeIPA only publish IPAs with EeveeSpotify already inside, so their builds are never used as the base.
+
+Run **Build Spotify + Chroma & Update Repo** from the Actions tab for a manual build. `force` rebuilds the current version, and `base_ipa_url` uses a direct IPA link of your choice. decrypt.day's own links don't work there, because they're blocked from cloud servers and expire after 5 minutes.
 
 ### Options
 
@@ -115,14 +138,13 @@ Repository variables (Settings → Secrets and variables → Actions → Variabl
 
 | Variable | Default | |
 |---|---|---|
-| `INJECT_EEVEE` | `true` | `false` ships Chroma only |
-| `EEVEE_REPO` | `whoeevee/EeveeSpotifyReincarnated` | where the latest `*iphoneos-arm64.deb` comes from |
-| `CHROMA_CHANNEL` | `stable` | `beta` builds the newest Chroma pre-release |
-| `RESTORE_WATCH` | `false` | `true` copies the Watch app back in (Chroma removes it). Experimental: needs a paid Apple ID and a signer that handles Watch apps, such as Sideloadly. SideStore/AltStore won't install it to the watch |
+| `CHROMA_CHANNEL` | `beta` | `beta` builds the newest kit; `stable` builds the one chroma.pw marks *recommended* |
+| `EEVEE_REPOS` | `SideloadLabs/EeveeSpotifyReincarnated NotDarkn/EeveePrebuilt` | repos tried in order for the newest rootless EeveeSpotify `.deb`. If none has one, only the Eevee variants are skipped |
+| `IPA_CACHE_REPO` | `wyatt-poole/ipa-cache` | private repo holding decrypt.day IPAs |
 | `BASE_IPA_URL` | | always use this decrypted IPA instead of searching |
 | `DOWNLOAD_BASE_URL` | | Worker URL if this repo is ever made private (see [`cloudflare/worker.js`](cloudflare/worker.js)) |
 
-**CarPlay** won't appear in sideloaded Spotify. It needs Apple's CarPlay audio entitlement in the signing profile, and Apple grants that only on request. A tweak or a different bundle ID can't add it.
+Secret (Settings → Secrets and variables → Actions → Secrets): `IPA_CACHE_TOKEN`, the token described in the ipa-cache README. Without it, the build skips the cache and the decrypt.day requests.
 
 ---
 
@@ -135,6 +157,6 @@ Repository variables (Settings → Secrets and variables → Actions → Variabl
 | [therealFoxster](https://github.com/therealFoxster) | DontEatMyContent |
 | [BillyCurtis](https://github.com/BillyCurtis) | Open in YouTube Safari extension |
 | [Chroma](https://chroma.pw) | Chroma for Spotify |
-| [whoeevee](https://github.com/whoeevee) | EeveeSpotify |
+| [whoeevee](https://github.com/whoeevee), [SideloadLabs](https://github.com/SideloadLabs/EeveeSpotifyReincarnated) | EeveeSpotify |
 | [asdfzxcvbn](https://github.com/asdfzxcvbn) | cyan (IPA injection tool) |
 | [MountainofPenguin](https://github.com/MountainofPenguin/Altstore-Repository) | Original repo this is forked from |

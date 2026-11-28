@@ -23,11 +23,12 @@ concurrency:
 
 env:
   # Repository variables (Settings > Secrets and variables > Actions > Variables)
-  INJECT_EEVEE: ${{ vars.INJECT_EEVEE || 'true' }}
-  EEVEE_REPO: ${{ vars.EEVEE_REPO || 'whoeevee/EeveeSpotifyReincarnated' }}
-  CHROMA_CHANNEL: ${{ vars.CHROMA_CHANNEL || 'stable' }}
-  RESTORE_WATCH: ${{ vars.RESTORE_WATCH || 'false' }}
+  # Repos tried in order for the newest rootless EeveeSpotify .deb
+  EEVEE_REPOS: ${{ vars.EEVEE_REPOS || 'SideloadLabs/EeveeSpotifyReincarnated NotDarkn/EeveePrebuilt' }}
+  CHROMA_CHANNEL: ${{ vars.CHROMA_CHANNEL || 'beta' }}
   DOWNLOAD_BASE_URL: ${{ vars.DOWNLOAD_BASE_URL }}
+  # Private repo holding decrypt.day IPAs, filled by the runner on your Mac
+  IPA_CACHE_REPO: ${{ vars.IPA_CACHE_REPO || 'wyatt-poole/ipa-cache' }}
 
 jobs:
   build:
@@ -57,9 +58,26 @@ jobs:
         id: fetch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IPA_CACHE_TOKEN: ${{ secrets.IPA_CACHE_TOKEN }}
           FORCE_BUILD: ${{ inputs.force }}
           BASE_IPA_URL: ${{ inputs.base_ipa_url || vars.BASE_IPA_URL }}
         run: python scripts/chroma/fetch_ipa.py
+
+      # The newest Chroma needs a Spotify version nobody has: ask the Mac runner (in the
+      # private cache repo) to fetch it from decrypt.day once. It re-runs this workflow when done.
+      - name: Request IPA from decrypt.day
+        if: steps.fetch.outputs.request_decrypt != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.IPA_CACHE_TOKEN }}
+          VER: ${{ steps.fetch.outputs.request_decrypt }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::notice::Spotify $VER needed. Set up the IPA cache (README) or pass base_ipa_url."
+            exit 0
+          fi
+          gh workflow run decrypt-day.yml --repo "$IPA_CACHE_REPO" -f spotify_ver="$VER" -f notify_repo="$GITHUB_REPOSITORY"
+          echo "::notice::Asked $IPA_CACHE_REPO to fetch Spotify $VER from decrypt.day"
 
       - name: Patch with Chroma
         if: steps.fetch.outputs.should_build == 'true'
@@ -75,42 +93,48 @@ jobs:
           path: patch_error.png
           if-no-files-found: ignore
 
-      - name: Restore Watch app
-        if: steps.fetch.outputs.should_build == 'true' && env.RESTORE_WATCH == 'true'
-        run: python scripts/chroma/update_repo.py restore-watch base_spotify.ipa chroma_patched.ipa
-
-      - name: Inject EeveeSpotify
-        id: eevee
+      # Variants are listed in chroma-variants.json; each one gets its own source URL.
+      - name: Build variants
+        id: build
         if: steps.fetch.outputs.should_build == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "$INJECT_EEVEE" != "true" ]; then
-            mv chroma_patched.ipa final_spotify.ipa
-            exit 0
-          fi
-          uv tool install --with lief "cyan @ git+https://github.com/asdfzxcvbn/pyzule-rw"
-          release=$(gh api "repos/$EEVEE_REPO/releases/latest")
-          tag=$(jq -r .tag_name <<<"$release")
-          url=$(jq -r '[.assets[] | select(.name | endswith("iphoneos-arm64.deb"))][0].browser_download_url // empty' <<<"$release")
-          if [ -z "$url" ]; then
-            echo "::error::No *iphoneos-arm64.deb asset in $EEVEE_REPO $tag"
-            exit 1
-          fi
-          echo "EeveeSpotify $tag: $url"
-          curl -fsSL "$url" -o eevee.deb
-          rm -f final_spotify.ipa
-          cyan -i chroma_patched.ipa -o final_spotify.ipa -f eevee.deb
-          echo "version=$tag" >> "$GITHUB_OUTPUT"
-
-      - name: Stamp build number
-        id: build
-        if: steps.fetch.outputs.should_build == 'true'
-        run: |
+          set -euo pipefail
           BUILD="${{ steps.fetch.outputs.spotify_ver }}.${{ github.run_number }}"
-          python scripts/chroma/update_repo.py stamp final_spotify.ipa "$BUILD"
-          cp final_spotify.ipa Spotify.ipa
+          cp chroma_patched.ipa Spotify-Chroma.ipa
+          cp chroma_patched.ipa Spotify-Chroma-Watch.ipa
+          if ! python scripts/chroma/update_repo.py restore-watch base_spotify.ipa Spotify-Chroma-Watch.ipa; then
+            echo "::warning::Base IPA has no Watch app, so the Watch variants are skipped"
+            rm Spotify-Chroma-Watch.ipa
+          fi
+
+          # EeveeSpotify is optional: if no .deb is found, only the Eevee variants are skipped.
+          tag="" url=""
+          for repo in $EEVEE_REPOS; do
+            release=$(gh api "repos/$repo/releases/latest" 2>/dev/null) || { echo "$repo: no releases"; continue; }
+            url=$(jq -r '[.assets[] | select(.name | test("(iphoneos-arm64|rootless)\\.deb$"))][0].browser_download_url // empty' <<<"$release")
+            if [ -n "$url" ]; then tag="$repo@$(jq -r .tag_name <<<"$release")"; break; fi
+            echo "$repo: no rootless .deb in latest release"
+          done
+          if [ -z "$url" ]; then
+            echo "::warning::No EeveeSpotify .deb found in: $EEVEE_REPOS. Eevee variants skipped."
+          else
+            echo "EeveeSpotify $tag: $url"
+            curl -fsSL "$url" -o eevee.deb
+            uv tool install --with lief "cyan @ git+https://github.com/asdfzxcvbn/pyzule-rw"
+            cyan -i Spotify-Chroma.ipa -o Spotify-Chroma-Eevee.ipa -f eevee.deb
+            if [ -f Spotify-Chroma-Watch.ipa ]; then
+              cyan -i Spotify-Chroma-Watch.ipa -o Spotify-Chroma-Eevee-Watch.ipa -f eevee.deb
+            fi
+          fi
+
+          for ipa in Spotify-Chroma*.ipa; do
+            python scripts/chroma/update_repo.py stamp "$ipa" "$BUILD"
+          done
+          ls -l Spotify-Chroma*.ipa
           echo "number=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "eevee=$tag" >> "$GITHUB_OUTPUT"
 
       - name: Publish release
         id: release
@@ -119,28 +143,28 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           C_VER: ${{ steps.fetch.outputs.chroma_ver }}
           S_VER: ${{ steps.fetch.outputs.spotify_ver }}
-          EEVEE_VER: ${{ steps.eevee.outputs.version }}
+          EEVEE_VER: ${{ steps.build.outputs.eevee }}
           BASE_SOURCE: ${{ steps.fetch.outputs.base_source }}
         run: |
           TAG="chroma-${C_VER}-spotify-${S_VER}"
           gh release delete "$TAG" --cleanup-tag --yes 2>/dev/null || true
-          NOTES="Spotify ${S_VER} patched with Chroma ${C_VER}${EEVEE_VER:+ + EeveeSpotify ${EEVEE_VER}}.
+          NOTES="Spotify ${S_VER} patched with Chroma ${C_VER}.${EEVEE_VER:+ Eevee variants include EeveeSpotify ${EEVEE_VER}.}
           Base IPA from ${BASE_SOURCE}. Build ${{ steps.build.outputs.number }}.
-          SHA-256: $(sha256sum Spotify.ipa | cut -d' ' -f1)"
-          gh release create "$TAG" Spotify.ipa --title "Chroma ${C_VER} for Spotify ${S_VER}" --notes "$NOTES" --latest
+
+          $(sha256sum Spotify-Chroma*.ipa)"
+          gh release create "$TAG" Spotify-Chroma*.ipa --title "Chroma ${C_VER} for Spotify ${S_VER}" --notes "$NOTES" --latest
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
-      - name: Update chroma-state.json and apps.json
+      - name: Update chroma-state.json and feeds
         if: steps.fetch.outputs.should_build == 'true'
         env:
           C_VER: ${{ steps.fetch.outputs.chroma_ver }}
           S_VER: ${{ steps.fetch.outputs.spotify_ver }}
         run: |
           jq -n --arg c "$C_VER" --arg s "$S_VER" '{chroma: $c, spotify: $s}' > chroma-state.json
-          python scripts/chroma/update_repo.py "${{ steps.release.outputs.tag }}" "$S_VER" "$C_VER" \
-            final_spotify.ipa "$GITHUB_REPOSITORY" \
+          python scripts/chroma/update_repo.py "${{ steps.release.outputs.tag }}" "$S_VER" "$C_VER" "$GITHUB_REPOSITORY" \
             --build "${{ steps.build.outputs.number }}" \
-            ${{ steps.eevee.outputs.version && format('--eevee "{0}"', steps.eevee.outputs.version) || '' }}
+            --newest "${{ steps.fetch.outputs.newest }}" ${{ steps.build.outputs.eevee && format('--eevee "{0}"', steps.build.outputs.eevee) || '' }}
 
       - name: Update README supported versions
         if: steps.fetch.outputs.should_build == 'true'
@@ -157,7 +181,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add chroma-state.json apps.json README.md
+          git add chroma-state.json apps.json sources README.md
           git diff --cached --quiet && exit 0
           git commit -m "Auto-update: Chroma ${{ steps.fetch.outputs.chroma_ver }} for Spotify ${{ steps.fetch.outputs.spotify_ver }}"
           git pull --rebase origin main

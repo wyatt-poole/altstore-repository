@@ -1,0 +1,12 @@
+{
+  "main_feed": {
+    "feed": "apps.json",
+    "prefer": ["Spotify-Chroma-Watch.ipa", "Spotify-Chroma.ipa"]
+  },
+  "variants": [
+    {"asset": "Spotify-Chroma-Watch.ipa",       "name": "Spotify + Chroma + Watch",         "eevee": false, "watch": true,  "feed": "sources/spotify-chroma-watch.json"},
+    {"asset": "Spotify-Chroma.ipa",             "name": "Spotify + Chroma",                 "eevee": false, "watch": false, "feed": "sources/spotify-chroma.json"},
+    {"asset": "Spotify-Chroma-Eevee-Watch.ipa", "name": "Spotify + Chroma + Eevee + Watch", "eevee": true,  "watch": true,  "feed": "sources/spotify-chroma-eevee-watch.json"},
+    {"asset": "Spotify-Chroma-Eevee.ipa",       "name": "Spotify + Chroma + Eevee",         "eevee": true,  "watch": false, "feed": "sources/spotify-chroma-eevee.json"}
+  ]
+}

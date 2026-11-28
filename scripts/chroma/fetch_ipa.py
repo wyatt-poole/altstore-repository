@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """Find the Chroma release to build and download the matching decrypted Spotify IPA.
 
-Writes should_build / chroma_ver / spotify_ver / base_source to $GITHUB_OUTPUT.
+Writes should_build / chroma_ver / spotify_ver / base_source / newest / request_decrypt to $GITHUB_OUTPUT.
+request_decrypt names a Spotify version the newest Chroma needs that no source has yet.
 Exits 0 whenever there is simply nothing to build, so scheduled runs stay green.
 
 Environment:
   GH_TOKEN        token for the GitHub API (60 req/h unauthenticated is not enough on shared runners)
-  CHROMA_CHANNEL  "stable" (default: the kit chroma.pw marks recommended) or "beta" (newest kit)
+  CHROMA_CHANNEL  "beta" (default: newest kit, betas included) or "stable" (the kit chroma.pw recommends)
   BASE_IPA_URL    skip discovery and download this exact decrypted IPA
+  IPA_CACHE_REPO  private repo whose releases hold decrypted IPAs (from decrypt.day, via your Mac)
+  IPA_CACHE_TOKEN token that can read IPA_CACHE_REPO
   FORCE_BUILD     "true" to build even if state.json already matches
 """
 
@@ -27,7 +30,6 @@ STATE_FILE = ROOT / "chroma-state.json"
 OUT_FILE = ROOT / "base_spotify.ipa"
 MIN_SIZE = 50 * 1024 * 1024
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
-SPOTIFY_APP_STORE_ID = "324684580"
 
 session = requests.Session()
 session.headers["User-Agent"] = UA
@@ -47,12 +49,6 @@ def set_output(**values):
         log(f"  output {line}")
 
 
-def finish_without_build(reason):
-    log(reason)
-    set_output(should_build="false")
-    sys.exit(0)
-
-
 # ---------------------------------------------------------------- version discovery
 
 def discover_kits():
@@ -62,7 +58,7 @@ def discover_kits():
     are older kits for other Spotify versions, used when nobody has uploaded a decrypted IPA
     for the newest one yet. The JSON API is what the patch page itself reads.
     """
-    channel = os.environ.get("CHROMA_CHANNEL", "stable").strip().lower()
+    channel = os.environ.get("CHROMA_CHANNEL", "beta").strip().lower()
     try:
         r = session.get("https://chroma.pw/api/patcher", timeout=30)
         r.raise_for_status()
@@ -171,8 +167,9 @@ def try_download(url: str, spotify_ver: str, source: str) -> bool:
         headers = {}
         if "api.github.com" in url:
             headers["Accept"] = "application/octet-stream"
-            if os.environ.get("GH_TOKEN"):
-                headers["Authorization"] = f"Bearer {os.environ['GH_TOKEN']}"
+            token = gh_token(url)
+            if token:
+                headers["Authorization"] = f"Bearer {token}"
         with session.get(url, stream=True, timeout=60, allow_redirects=True, headers=headers) as r:
             ctype = r.headers.get("content-type", "")
             if r.status_code != 200 or "text/html" in ctype:
@@ -193,10 +190,20 @@ def try_download(url: str, spotify_ver: str, source: str) -> bool:
 
 # ---------------------------------------------------------------- sources
 
+CACHE_REPO = os.environ.get("IPA_CACHE_REPO", "").strip()
+
+
+def gh_token(url_or_repo: str):
+    if CACHE_REPO and CACHE_REPO.lower() in url_or_repo.lower() and os.environ.get("IPA_CACHE_TOKEN"):
+        return os.environ["IPA_CACHE_TOKEN"]
+    return os.environ.get("GH_TOKEN")
+
+
 def gh_releases(repo: str):
     headers = {"Accept": "application/vnd.github+json"}
-    if os.environ.get("GH_TOKEN"):
-        headers["Authorization"] = f"Bearer {os.environ['GH_TOKEN']}"
+    token = gh_token(f"repos/{repo}/")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
     r = session.get(f"https://api.github.com/repos/{repo}/releases?per_page=30", headers=headers, timeout=30)
     if r.status_code != 200:
         log(f"  GitHub API {repo}: HTTP {r.status_code}")
@@ -252,31 +259,23 @@ def source_release_bodies(repo):
     return gen
 
 
-def source_decrypt_day(ver):
-    """Best effort: decrypt.day is behind Cloudflare and often wants a login."""
-    from playwright.sync_api import sync_playwright
-    try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page(user_agent=UA)
-            page.goto(f"https://decrypt.day/app/id{SPOTIFY_APP_STORE_ID}", wait_until="domcontentloaded", timeout=45_000)
-            page.wait_for_timeout(8_000)
-            links = page.eval_on_selector_all(
-                "a[href]", "els => els.map(e => [e.href, e.innerText + ' ' + (e.closest('li,tr,div')?.innerText || '')])")
-            browser.close()
-    except Exception as e:  # noqa: BLE001
-        log(f"  decrypt.day unavailable: {e}")
+def source_cache(ver):
+    """Your private cache: releases tagged spotify-<ver>, filled from decrypt.day by your Mac."""
+    if not CACHE_REPO or not os.environ.get("IPA_CACHE_TOKEN"):
+        log("  IPA cache not configured (IPA_CACHE_REPO / IPA_CACHE_TOKEN)")
         return
-    for href, text in links:
-        if ver in text and re.search(r"download|\.ipa", href + text, re.I):
-            yield href
+    for rel in gh_releases(CACHE_REPO):
+        for a in rel.get("assets", []):
+            if a["name"].endswith(".ipa") and ver in a["name"]:
+                yield a["url"]  # API URL: works for private repos with a token
 
 
+# decrypt.day itself is reached only from the Mac runner (ipa-cache repo); Cloudflare blocks cloud servers.
 SOURCES = [
+    ("IPA cache", source_cache),
     ("codeboy2012/PwEevee", source_pweevee),
     ("NotDarkn/EeveePrebuilt", source_release_bodies("NotDarkn/EeveePrebuilt")),
     ("estrogencat/EeveeIPA", source_release_bodies("estrogencat/EeveeIPA")),
-    ("decrypt.day", source_decrypt_day),
 ]
 
 
@@ -304,22 +303,31 @@ def main():
     force = os.environ.get("FORCE_BUILD", "").lower() == "true"
     if os.environ.get("BASE_IPA_URL", "").strip():
         kits = kits[:1]  # a pinned IPA is meant for the newest kit
+    newest_chroma, newest_spotify = kits[0]
+    request = {}  # set once the newest kit's Spotify turns out to be missing everywhere
 
     for i, (chroma_ver, spotify_ver) in enumerate(kits):
         if not force and state.get("chroma") == chroma_ver and state.get("spotify") == spotify_ver:
-            finish_without_build("Already up to date" if i == 0 else
-                                 f"Already built Chroma {chroma_ver} for Spotify {spotify_ver}, the newest available")
+            log("Already up to date" if i == 0 else
+                f"Already built Chroma {chroma_ver} for Spotify {spotify_ver}, the newest available")
+            set_output(should_build="false", **request)
+            sys.exit(0)
         if OUT_FILE.exists():
             OUT_FILE.unlink()
         source = find_ipa(spotify_ver)
         if source:
             if i:
-                log(f"::warning::Spotify {kits[0][1]} isn't available yet; building older Chroma {chroma_ver} for Spotify {spotify_ver}")
-            set_output(should_build="true", chroma_ver=chroma_ver, spotify_ver=spotify_ver, base_source=source)
+                log(f"::warning::Spotify {newest_spotify} isn't available yet; "
+                    f"building older Chroma {chroma_ver} for Spotify {spotify_ver}")
+            newest = f"Chroma {newest_chroma} for Spotify {newest_spotify}" if i else ""
+            set_output(should_build="true", chroma_ver=chroma_ver, spotify_ver=spotify_ver,
+                       base_source=source, newest=newest, **request)
             return
         log(f"::warning::Target Spotify {spotify_ver} not yet available in fallback sources")
+        if i == 0:
+            request = {"request_decrypt": spotify_ver}
 
-    set_output(should_build="false")
+    set_output(should_build="false", **request)
 
 
 if __name__ == "__main__":
