@@ -203,6 +203,10 @@ jobs:
           rm -rf ipa_tmp && mkdir ipa_tmp && cd ipa_tmp
           unzip -q "../$IPA"
           PLIST=$(ls -d Payload/*.app)/Info.plist
+          # SideStore only re-IDs extensions in PlugIns/, not ExtensionKit ones in Extensions/,
+          # so those fail to install ("Mismatched bundle IDs"). YouTube's only one is
+          # AppMigrationExtension (device-transfer data), so drop the folder.
+          rm -rf Payload/*.app/Extensions
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUM" "$PLIST"
           rm "../$IPA" && zip -qry "../$IPA" .
           cd .. && rm -rf ipa_tmp
