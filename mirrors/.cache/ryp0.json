@@ -1,0 +1,882 @@
+{
+"https://archive.org/download/deer_hunter_2014_2.2.0_ios_5.1/Deer_Hunter_2014_2.2.0_ios_5.1.ipa": {
+"bundle": "com.glu.deerhunt2",
+"ok": true
+},
+"https://archive.org/download/super-mario-64_202409/SuperMario64_60FPS_1.2.1.ipa": {
+"bundle": "xyz.cypwn.sm64ios-60fps",
+"ok": true
+},
+"https://codeberg.org/ltchipotle/LemoNX.Binaries/releases/download/2.6-jitless/MeloNX-20261029-2253-lemonx-integ2-picker.ipa": {
+"bundle": "com.ltchipotle.LemoNX",
+"ok": true
+},
+"https://github.com/125hz/Tsubomi/releases/download/0.47.0/Tsubomi.ipa": {
+"bundle": "org.vita3k.experimental.ios",
+"ok": true
+},
+"https://github.com/34306/ForceDuoApp/releases/download/1.2/ForceDuo-unsigned.ipa": {
+"bundle": "com.34306.forceDuo",
+"ok": true
+},
+"https://github.com/77emul/77U-BETA/releases/download/v0.1.0-beta.3/77U-iOS-iPadOS-0.1.0-1056.ipa": {
+"bundle": "com.77emul.app",
+"ok": true
+},
+"https://github.com/ARMSX2/ARMSX2/releases/download/iOSv2.6.0/ARMSX2-iOS-2.6.0.ipa": {
+"bundle": "com.armsx2.ios",
+"ok": true
+},
+"https://github.com/ARMSX2/ARMSX3/releases/download/ios-0.0.4/ARMSX3-0.0.4.ipa": {
+"bundle": "com.armsx3.ARMSX3",
+"ok": true
+},
+"https://github.com/AniBakaBaka/AniBaka/releases/download/5.2.5%2B261113/baka-5.2.5%2B261113-ios-unsigned.ipa": {
+"bundle": "ani.baka",
+"ok": true
+},
+"https://github.com/Apollo-Reborn/Apollo-Reborn/releases/download/v1.15.11_4.1.0/Apollo-Reborn-4.1.0-GLASS-NOEXTENSIONS.ipa": {
+"bundle": "com.christianselig.Apollo",
+"ok": true
+},
+"https://github.com/Ayan4k/Ram-Checker/releases/download/Stable/RamChecker.ipa": {
+"bundle": "com.mody.ramchecker",
+"ok": true
+},
+"https://github.com/Baconium/JESSI/releases/download/1.1.2/JESSI.ipa": {
+"bundle": "com.baconmania.jessi",
+"ok": true
+},
+"https://github.com/Balackburn/Apollo/releases/download/v1.15.11_4.1.0/Apollo-Reborn-4.1.0.ipa": {
+"bundle": "com.christianselig.Apollo",
+"ok": true
+},
+"https://github.com/CHANG-JUI-LIN/Yuedu-reader/releases/download/v1.0.4-2/YueduReader.ipa": {
+"bundle": "com.zhangruilin.yuedureader",
+"ok": true
+},
+"https://github.com/CesarGarza55/NXHorizon/releases/download/v1.0.3/NXHorizon-unsigned.ipa": {
+"bundle": "com.cesargarza.nxhorizon",
+"ok": true
+},
+"https://github.com/ChrisMack32/Locus/releases/download/v1.0.3/Locus-1.0.3.ipa": {
+"bundle": "com.chrismack.locus",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/BeatSaber-iOS/releases/download/v1.0.0/BeatSaber.ipa": {
+"bundle": "com.devz.beatsaber",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/MCX360-EDITION/releases/download/R2/MCX360Edition.ipa": {
+"bundle": "com.devz.mc360",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/MarathonRecompilediOS/releases/download/ios-2026-10-16-c/Sonic06-iOS.ipa": {
+"bundle": "com.devz.sonic2006",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/MegaMan64Recompiled-Mobile/releases/download/v0.9.1-mobile.1/MegaMan64-iOS-v0.9.1-mobile.1.ipa": {
+"bundle": "com.devz.megaman64",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/MinecraftStoryMode-iOS/releases/download/v0.1.0/MCSM-iOS.ipa": {
+"bundle": "com.devz.mcsm",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/NBAHangtime-iOS/releases/download/v0.4.4/NBA-Hangtime-iOS.ipa": {
+"bundle": "com.devz.nbahangtime",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/NativePorts/releases/download/v0.4.6/SSF2T-0.4.2-unsigned.ipa": {
+"bundle": "com.devz.ssf2t",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/NativePorts/releases/download/v0.4.6/SlamJam96-0.4.2-unsigned.ipa": {
+"bundle": "com.devz.slamjam96",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/NativePorts/releases/download/v0.4.6/THPS2-0.4.3-unsigned.ipa": {
+"bundle": "com.devz.thps2",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/NativePorts/releases/download/v0.4.6/UMK3-0.4.2-unsigned.ipa": {
+"bundle": "com.devz.umk3",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/P4G-iOS/releases/download/build2_1/Persona4Golden-iOS-0.1.1.ipa": {
+"bundle": "com.devz.persona4golden",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/ProjectReignition-iOS/releases/download/1.0.9/ProjectReignition-iOS.ipa": {
+"bundle": "com.devz.projectreignition",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/ReCoD4/releases/download/R6-beta.1/COD4iOS-1.0.4-build13-performance_stats_enabled-unsigned.ipa": {
+"bundle": "com.devz.cod4ios",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/SegaSuperstarsTennis-iOS/releases/download/1.0.0/SEGA-Superstars-Tennis-iOS.ipa": {
+"bundle": "com.devz.sstrematch",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/Skate2-iOS/releases/download/v1.0.0/Skate2-iOS.ipa": {
+"bundle": "com.devz.skate2",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/SonicFreeRiders-iOS/releases/download/v1.0.0/SonicFreeRiders-iOS-1.0.0.ipa": {
+"bundle": "com.devz.freeridersrecompiled",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/SonicGenerations-iOS/releases/download/v1.0.0/Sonic-Generations-iOS.ipa": {
+"bundle": "com.devz.sonicgenerations",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/TheChoicerVoicer-iOS/releases/download/1.0.0/TheChoicerVoicer-iOS.ipa": {
+"bundle": "com.devz.thechoicervoicer",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/TheSimpsonsGame-iOS/releases/download/v0.2.4/TheSimpsonsGame-v0.2.4.ipa": {
+"bundle": "com.devz.simpsons",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/UT2004-iOS/releases/download/v0.1.0-7/UT2004-iOS-0.1.0-7.ipa": {
+"bundle": "com.devz.ut04",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/UT3-iOS/releases/download/v0.1.0/UT3-iOS.ipa": {
+"bundle": "com.devz.ut3",
+"ok": true
+},
+"https://github.com/DevZer0D4Y/UnleashedRecompilediOS/releases/download/v1.1.0/SonicUnleashed_iOS_v1.1.0.ipa": {
+"bundle": "com.devz.sonicunleashed",
+"ok": true
+},
+"https://github.com/DjangoCustard225/Vesper/releases/download/v0.5.4/Vesper.ipa": {
+"bundle": "app.vesper",
+"ok": true
+},
+"https://github.com/EduAlexxis/ByeTunes/releases/download/v2.6/ByeTunes.v2.6.-.Version.fix.ipa": {
+"bundle": "com.EduAlexxis.MusicManager",
+"ok": true
+},
+"https://github.com/EspressU/EspressU-Emu/releases/download/v1.5/EspressU-1.5.ipa": {
+"bundle": null,
+"ok": false
+},
+"https://github.com/Gsjsjzhznsz/Prisma-Minecraft-iOS-Launcher/releases/download/v6.5.5/com.prisma-devs.prisma-6.5.5-ios.ipa": {
+"bundle": "com.prisma-devs.prisma",
+"ok": true
+},
+"https://github.com/ITZproVenom/Gamestream/releases/download/latest-ios/GameStream-unsigned.ipa": {
+"bundle": "com.gamestream.app",
+"ok": true
+},
+"https://github.com/JMillz269/Neroli/releases/download/1.1.0/Neroli-1.1.0-unsigned.ipa": {
+"bundle": "org.jmillz269.neroli",
+"ok": true
+},
+"https://github.com/Kelly-Inc/horizon-ios/releases/download/ios-build-109.1/Horizon-iOS-0.1.65-build109.1-unsigned.ipa": {
+"bundle": "dev.horizon.game",
+"ok": true
+},
+"https://github.com/KoreanSeats1/Theft4/releases/download/v0.3.2/Theft4-0.3.2-144-ios-arm64.ipa": {
+"bundle": "com.lukebrosious.theft4",
+"ok": true
+},
+"https://github.com/LLCOOLT/paper-cut/releases/download/v0.5.1/papercut-0.5.1-eu-ios-unsigned.ipa": {
+"bundle": "io.github.ttyd-port.eu",
+"ok": true
+},
+"https://github.com/Lakr233/Asspp/releases/download/4.2.2/Asspp.ipa": {
+"bundle": "wiki.qaq.Asspp",
+"ok": true
+},
+"https://github.com/LeoManrique/sm64coopdx-ios/releases/download/v151.1.0/sm64coopdx.ipa": {
+"bundle": "com.sm64coopdx.ios",
+"ok": true
+},
+"https://github.com/Leviidev/AetherPS4/releases/download/v1.0.1_release/AetherPS4-iOS.ipa": {
+"bundle": "com.aether.ps4ios",
+"ok": true
+},
+"https://github.com/Leviidev/Henge/releases/download/0.3/Henge.ipa": {
+"bundle": "com.henge.app",
+"ok": true
+},
+"https://github.com/Leviidev/Husk/releases/download/3.4/Husk.ipa": {
+"bundle": "com.husk.app",
+"ok": true
+},
+"https://github.com/Leviidev/Podium/releases/download/0.1.0/Podium_v0.1.0.ipa": {
+"bundle": "com.leviidev.podium",
+"ok": true
+},
+"https://github.com/Leviidev/Utsuro/releases/download/0.1.0/Utsuro.ipa": {
+"bundle": "com.utsuro.app",
+"ok": true
+},
+"https://github.com/LinkPass888/AirBeep/releases/download/v2.5.2/airbeep-v2.5.2-unsigned.ipa": {
+"bundle": "com.linkpass888.airbeep",
+"ok": true
+},
+"https://github.com/LinkPass888/CarCanvas/releases/download/v2.1.2/CarCanvas-v2.1.2-unsigned.ipa": {
+"bundle": "com.carcanvas.wq",
+"ok": true
+},
+"https://github.com/LinkPass888/Kazumi-Swift/releases/download/v3.1.3/Kazumi_ios_v3.1.3_no_sign.ipa": {
+"bundle": "com.linkpass.kazumi",
+"ok": true
+},
+"https://github.com/LiveContainer/LiveContainer/releases/download/3.8.0/LiveContainer.ipa": {
+"bundle": "com.kdt.livecontainer",
+"ok": true
+},
+"https://github.com/LiveContainer/LiveContainer/releases/download/nightly/LiveContainer%2BSideStore.ipa": {
+"bundle": "com.kdt.livecontainer",
+"ok": true
+},
+"https://github.com/LiveContainer/LiveContainer/releases/download/nightly/LiveContainer.ipa": {
+"bundle": "com.kdt.livecontainer",
+"ok": true
+},
+"https://github.com/MaftyManicEMU/DukeX/releases/download/v1.0.2/DukeX.v1.0.2.ipa": {
+"bundle": "com.mafty.dukex",
+"ok": true
+},
+"https://github.com/Mak5er/AirCard-iOS/releases/download/v1.3.2/AirCard-iOS.ipa": {
+"bundle": "com.mak5er.aircard",
+"ok": true
+},
+"https://github.com/MakrSas/Monolith/releases/download/v0.3.0-beta.1/Monolith.ipa": {
+"bundle": "com.monolith.app",
+"ok": true
+},
+"https://github.com/Manic-EMU/ManicEMU/releases/download/v2.0.2/ManicEMU.v2.0.2.SideloadJIT.ipa": {
+"bundle": "com.aoshuang.manicemu",
+"ok": true
+},
+"https://github.com/MaxFRdev/MaxPS4/releases/download/v0.5.2-beta/MaxPS4-FEXCore-SideStore.ipa": {
+"bundle": "com.enermaxfr.maxps4",
+"ok": true
+},
+"https://github.com/MchinaMd57764/WQToolkit/releases/download/v1.0/WQToolkit-unsigned.ipa": {
+"bundle": "com.zhangfuhao.wqtoolkit",
+"ok": true
+},
+"https://github.com/MikeMikerson/sts2-ios-launcher-public/releases/download/v1.3.0/STS2Mobile-1.3.0.ipa": {
+"bundle": "io.github.mikemikerson.sts2mobile",
+"ok": true
+},
+"https://github.com/MuffinEMU/Muffin-EMU/releases/download/v11.8/MuffinEMU-fakesigned.ipa": {
+"bundle": "com.void.muffinemu",
+"ok": true
+},
+"https://github.com/MyNameIsArko/FactorioPad/releases/download/v2.3.0/FactorioPad-template.ipa": {
+"bundle": "pl.adrian.FactorioPad",
+"ok": true
+},
+"https://github.com/NeoFreeBird/app/releases/download/v7.3.1/NeoFreeBird-sideloaded-Twitter_7.3.1_12.39.ipa": {
+"bundle": "com.atebits.Tweetie2",
+"ok": true
+},
+"https://github.com/NeoFreeBird/app/releases/download/v7.3.1/NeoFreeBird-sideloaded-X_7.3.1_12.39.ipa": {
+"bundle": "com.atebits.Tweetie2",
+"ok": true
+},
+"https://github.com/NexSideloading/iRAM-Plus/releases/download/v1.3.1/iRAM-Plus.ipa": {
+"bundle": "novadev.iram-plus",
+"ok": true
+},
+"https://github.com/Niimahz/Anker_build/releases/download/v1.0.0/Anker-v1.0.0-unsigned.ipa": {
+"bundle": "com.ankergamebridge.app",
+"ok": true
+},
+"https://github.com/Nouvborne/Ketamine/releases/download/1.2.1/Ketamine-1.2.1.ipa": {
+"bundle": "uk.nouvborne.ketamine",
+"ok": true
+},
+"https://github.com/NuvioMedia/NuvioMobile/releases/download/1.1.0-beta.3/nuvio-1.1.0-beta.3-full-release.ipa": {
+"bundle": "com.nuvio.media",
+"ok": true
+},
+"https://github.com/OMetaVR/DiOShonored/releases/download/v0.1.0-beta.3/DiOShonored-shell.ipa": {
+"bundle": "dev.dios.dishonored",
+"ok": true
+},
+"https://github.com/Predidit/Kazumi/releases/download/2.4.7/Kazumi_ios_2.4.7_no_sign.ipa": {
+"bundle": "com.example.kazumi",
+"ok": true
+},
+"https://github.com/ResistanceTo/MiniWatts/releases/download/v1.7.0/MiniWatts-unsigned.ipa": {
+"bundle": "org.zhaohe.MiniWatts",
+"ok": true
+},
+"https://github.com/Reukix/Reloc/releases/download/v1.0.4/Reloc.ipa": {
+"bundle": "dev.reloc.ios",
+"ok": true
+},
+"https://github.com/RyanYuuki/AnymeX/releases/download/v3.2.1/AnymeX-iOS-v3.2.1.ipa": {
+"bundle": "com.ryan.anymex",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/imports/com.clickgamer.AngryBirds-1.0-cdea1290dcaa.ipa": {
+"bundle": "com.clickgamer.AngryBirds",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/imports/org.angelauramc.amethyst-f98c4133c72d39e06ceac42b57cc4477c52105fc-9e934826b921.ipa": {
+"bundle": "org.angelauramc.amethyst",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/live-github-backups/weekly-f0109aa8f391f797d5156a0a-4f55a4c7842740c0f1240dfc8655141dd1404859b9db85169c0e1c592fe9eeaf.ipa": {
+"bundle": "io.github.odrannnn.metroidprimeport",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/app-09d8f1ab279d40c38882e11adad1af01-65478f0f1dc4c469ec0d0035d46b4861197110c1-337e066ef4e6.ipa": {
+"bundle": "com.yihoooong.airliftsilence",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/app-5d25dc266a154f1e9274170b8280263a-9f0b082ddce2d912322b04910b8a8dd964bf45a8-c271bf5e4dc0.ipa": {
+"bundle": "com.SideStore.SideStore",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/app-6038fee174ab4e5cba1069c4b21efede-ca1b3d00e1fdc62efda9296f67061011cdc64719-1f93e187a5fe.ipa": {
+"bundle": "dev.espressu.EspressU",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/app-615d86a9e61e488c9803deb087829c90-c4797387ca9a81f31fdcdd2723ec1050ca35fdb3-c4e03c185919.ipa": {
+"bundle": "com.air-devs.air",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/app-aidoku-aidoku-c3112316-95d1468d599a154f03d6a1dd06bf839d3ff3f7bd-7e9e832b37d6.ipa": {
+"bundle": "app.aidoku.Aidoku",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/armsx2-nightly-Nightly-2026.11.20-73c26362521f.ipa": {
+"bundle": "com.armsx2.ios.nightly",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/dolphinios.ipa": {
+"bundle": "me.oatmealdome.DolphiniOS-njb-patreon-beta",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/ipsx2.ipa": {
+"bundle": "com.otti83.iPSX2",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/mond-development-9ad223103e7f.ipa": {
+"bundle": "com.roooot.mondapp",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/org-emexlabs-nyxian-c609773b-9236c22f146a0f63bb597e629573e151ae4d4df7-1a9a666b9fee.ipa": {
+"bundle": "org.emexlabs.nyxian",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/project-4a1a129c09874263ac2e03acc0269a61-76d37591586f6c468e5b626f5cdafa137259ff76-d7b07f2a1f2c.ipa": {
+"bundle": "io.github.jmillz269.ymir",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/project-89132ca96fefd86ded3d81da828fffa6-65c7f75de0638ed3cf6eafccbede356e024644c3-eed51337ae78.ipa": {
+"bundle": "com.gow3ios.app",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/sideinstaller-v2.1.0-5b69089fa88d.ipa": {
+"bundle": "com.frizzlem.sideinstaller",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/software-iridium-b8778bc6-ecb4a63ea25d7b0f66715ef7a7cb1afd62a10d87-d1e9c02cfdc9.ipa": {
+"bundle": "software.iridium",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0-repository/releases/download/nightly/xenios-release-v2.3.3-build-11940-de943a84026d.ipa": {
+"bundle": "com.xenios.jp",
+"ok": true
+},
+"https://github.com/Sami-Wali/ryP0/releases/download/2.3.2/ryP0-2.3.2.ipa": {
+"bundle": "com.ry0.ryP0",
+"ok": true
+},
+"https://github.com/StikDebug/StikDebug/releases/download/3.2.2/StikDebug-3.2.2.ipa": {
+"bundle": "com.stik.stikdebug",
+"ok": true
+},
+"https://github.com/StikDebug/StikPair/releases/download/v1.2.0/StikPair.ipa": {
+"bundle": "com.stik.StikPair",
+"ok": true
+},
+"https://github.com/SubhanHabib/OpenRAC-iOS/releases/download/v0.1.1/OpenRAC_rac1-ntsc_0.1.1_ios.ipa": {
+"bundle": "dev.openrac.rac1-ntsc",
+"ok": true
+},
+"https://github.com/TarbleFR/RewindBox/releases/download/0.0.11/RewindBox-0.0.11.ipa": {
+"bundle": "com.neogamelab.neostation",
+"ok": true
+},
+"https://github.com/Taylen-chud/Amethyst-iOS/releases/download/1.2.0/Amethyst-1.2.0.ipa": {
+"bundle": "org.angelauramc.amethyst",
+"ok": true
+},
+"https://github.com/Thijs2004/CyPort/releases/download/v1.6.1/CyPort-1.6.1-2.3.1%2B2.5-unsigned.ipa": {
+"bundle": "com.example.cyport",
+"ok": true
+},
+"https://github.com/TouchFriend/BiliBiliMApp/releases/download/3.2.0/BiliBiliMApp_8.89.0.v3.2.0.ipa": {
+"bundle": "tv.danmaku.bilianime",
+"ok": true
+},
+"https://github.com/TwilitRealm/dusklight/releases/download/v2.0.3/Dusklight-v2.0.3-ios-arm64.ipa": {
+"bundle": "dev.twilitrealm.dusk",
+"ok": true
+},
+"https://github.com/WiseManChris/MHGURecomp-iOS/releases/download/v1.0.0-ios/MHGURecomp.ipa": {
+"bundle": "com.wisemanchris.mhgurecomp",
+"ok": true
+},
+"https://github.com/XITRIX/RPCS3-iOS-Releases/releases/download/v0.10.1/RPCS3-VisionOS.ipa": {
+"bundle": "com.xitrix.RPCS3",
+"ok": true
+},
+"https://github.com/XITRIX/iTorrent/releases/download/v2.2.0-1/iTorrent.ipa": {
+"bundle": "com.xitrix.iTorrent2",
+"ok": true
+},
+"https://github.com/YangJiiii/3105/releases/download/v2.0/3105-2.0-build8-20260914-125906-unsigned.ipa": {
+"bundle": "com.apple.mobile.MobileHouseArrest",
+"ok": true
+},
+"https://github.com/YangJiiii/EnsWilde/releases/download/EnsWilde3.1.3/EnsWilde.ipa": {
+"bundle": "com.yangjiii.EnsWilde",
+"ok": true
+},
+"https://github.com/Yebot32/xenra/releases/download/v0.5.0/xenra-ios-0.5.0.ipa": {
+"bundle": "Mohammed.Xanite.ios",
+"ok": true
+},
+"https://github.com/altstoreio/AltStore/releases/download/v2.3/AltStore_Classic_Notarized_2_3.ipa": {
+"bundle": "com.rileytestut.AltStore",
+"ok": true
+},
+"https://github.com/andrewnakas/skate3-ios-setup/releases/download/v2.7.1/skate3.ipa": {
+"bundle": "com.nakas.skate3",
+"ok": true
+},
+"https://github.com/arjuk95-dot/FNV-iOS-Shim/releases/download/ios-build-20/FNV-iOS-build20-calltrace-comparison-unsigned.ipa": {
+"bundle": "dev.fnvshim.game",
+"ok": true
+},
+"https://github.com/bep1s69/nfsmw-ios/releases/download/v0.6.2/NFSMW.ipa": {
+"bundle": "com.bep1s.nfsmwios",
+"ok": true
+},
+"https://github.com/bggRGjQaUbCoE/PiliPlus/releases/download/2.2.1/PiliPlus_ios_2.2.1%2B5655.ipa": {
+"bundle": "com.example.piliplus",
+"ok": true
+},
+"https://github.com/breeze-project-org/Breeze/releases/download/v3.1.0/Breeze-iOS-v3.1.0.ipa": {
+"bundle": "com.zephyr.breeze",
+"ok": true
+},
+"https://github.com/camhoc/Madeira/releases/download/0.2.180-og/Madeira.Nightly.180.og.ipa": {
+"bundle": "com.willfaust.madeora",
+"ok": true
+},
+"https://github.com/cartouche-app/Cartouche/releases/download/v0.17.0/Cartouche-0.17.0.ipa": {
+"bundle": "io.github.clabeuhtegrite.cartouche",
+"ok": true
+},
+"https://github.com/celia-sh/Hana/releases/download/v1.1.0/Hana-iOS-1.1.0-45-unsigned.ipa": {
+"bundle": "sh.celia.hana",
+"ok": true
+},
+"https://github.com/chrissotraidis/OpenTTDPad/releases/download/v0.2.1/OpenTTDPad-unsigned.ipa": {
+"bundle": "com.chrissotraidis.openttdpad",
+"ok": true
+},
+"https://github.com/chrissotraidis/bluewake/releases/download/v0.12.0/BlueWake-v0.12.0-ios-unsigned.ipa": {
+"bundle": "dev.bluewake.BlueWake",
+"ok": true
+},
+"https://github.com/chrissotraidis/etpad/releases/download/v0.1.1/ETPad-unsigned.ipa": {
+"bundle": "com.chrissotraidis.etpad",
+"ok": true
+},
+"https://github.com/chrissotraidis/kartpad/releases/download/v0.8.12/KartPad-v0.8.12-ios-for-padmint.ipa": {
+"bundle": "dev.kartpad.app",
+"ok": true
+},
+"https://github.com/chrissotraidis/meleepad/releases/download/v0.3.1/MeleePad-v0.3.1-ios-unsigned.ipa": {
+"bundle": "com.meleepad.MeleePad",
+"ok": true
+},
+"https://github.com/chrissotraidis/padmint/releases/download/v0.6.10/PadMint-ios-unsigned.ipa": {
+"bundle": "com.chrissotraidis.padmintlibrary",
+"ok": true
+},
+"https://github.com/claration/Feather/releases/download/v2.9.0/Feather.ipa": {
+"bundle": "thewonderofyou.Feather",
+"ok": true
+},
+"https://github.com/coflyn/Mori/releases/download/v4.6.1/Mori-v4.6.1-iOS-Unsigned.ipa": {
+"bundle": "com.mori.downloader",
+"ok": true
+},
+"https://github.com/creeper4004/The-Simpsons-Hit-and-Run-iOS/releases/download/v0.2/Simpsons-Hit-and-Run-iOS-0.2.ipa": {
+"bundle": "com.c4rlox.simpsons.ios",
+"ok": true
+},
+"https://github.com/crypticplank/flappybird/releases/download/4.3/org.brandonplank.flappybird.ipa": {
+"bundle": "org.brandonplank.flappybird",
+"ok": true
+},
+"https://github.com/daimiaopeng/coolapk-desktop/releases/download/v1.35.0/coolapk-v1.35.0-ios-arm64-unsigned.ipa": {
+"bundle": "com.coolapk.desktop",
+"ok": true
+},
+"https://github.com/enmity-mod/tweak/releases/download/v2.2.6/Enmity.ipa": {
+"bundle": "com.hammerandchisel.discord",
+"ok": true
+},
+"https://github.com/flyngmt/Nookery/releases/download/v1.0.0/Nookery-v1.0.0-ios-arm64.ipa": {
+"bundle": "com.flyngmt.nookery",
+"ok": true
+},
+"https://github.com/frs0n/GestaltEdit/releases/download/v2.3.1/GestaltEdit-v2.3.1-unsigned.ipa": {
+"bundle": "me.ssus.gestaltedit",
+"ok": true
+},
+"https://github.com/frs0n/placard/releases/download/v2.0.3/placard-v2.0.3-unsigned.ipa": {
+"bundle": "me.ssus.placard",
+"ok": true
+},
+"https://github.com/g8row/PhotosBackup/releases/download/0.4.1/PhotosBackup.ipa": {
+"bundle": "com.g8row.photosbackup",
+"ok": true
+},
+"https://github.com/grayankit/Dartotsu-Downloader/releases/download/46438e9/Dartotsu-iOS-main.ipa": {
+"bundle": "ani.aayush262.dartotsu",
+"ok": true
+},
+"https://github.com/grechucia/gwent-reimagined/releases/download/v1.0.1/GwentReimagined-1.0.1-iOS.ipa": {
+"bundle": "io.github.grechucia.gwentreimagined",
+"ok": true
+},
+"https://github.com/henrywizzrd/zyx/releases/download/v1.1.2/Zyx-unsigned.ipa": {
+"bundle": "com.henrywizzrd.zyx",
+"ok": true
+},
+"https://github.com/hrydgard/ppsspp/releases/download/v1.20.4/PPSSPP-iOS-v1.20.4.ipa": {
+"bundle": "org.ppsspp.ppsspp",
+"ok": true
+},
+"https://github.com/hseons/WQManager/releases/download/v0.5.0/WQManager-0.5-build1-unsigned.ipa": {
+"bundle": "mumu.pduola.WQManager",
+"ok": true
+},
+"https://github.com/huami1314/GestaltX/releases/download/v1.1.1/GestaltX_1.1.1.ipa": {
+"bundle": "com.huami.gestultx",
+"ok": true
+},
+"https://github.com/hubzzzgr/SideStore-tvOS/releases/download/v0.7.0-tvos.0702/SideTVstore-unsigned.ipa": {
+"bundle": "io.github.hubzzzgr.SideStoreTV",
+"ok": true
+},
+"https://github.com/hubzzzgr/TVContainer/releases/download/1.0/TVContainer.ipa": {
+"bundle": "com.hubzzzgr.tvcontainer",
+"ok": true
+},
+"https://github.com/hugeBlack/GetMoreRam/releases/download/nightly/GetMoreRam.ipa": {
+"bundle": "com.aigch.nmsl",
+"ok": true
+},
+"https://github.com/huzaifahshahid71-ops/Strata/releases/download/v4.0.0/Strata-4.0%2BSideStore.ipa": {
+"bundle": "com.kdt.livecontainer",
+"ok": true
+},
+"https://github.com/huzaifahshahid71-ops/hollow-games-ios-builder/releases/download/phone-v1.1.0-rc.1/Hollow-Builder-1.1.0-RC1-Unsigned.ipa": {
+"bundle": "com.example.hollowgamesbuilder",
+"ok": true
+},
+"https://github.com/iamjhe08/VidGrab/releases/download/1.3.6c/VidGrab-1.3.6c.ipa": {
+"bundle": "com.t4mag0.vidgrab",
+"ok": true
+},
+"https://github.com/ichitaso/Regitela/releases/download/v1.0.7/Regitela_1.0.7.ipa": {
+"bundle": "com.ichitaso.regitela",
+"ok": true
+},
+"https://github.com/impin2rex/Laya/releases/download/v1.9.6/Laya-1.9.6-ios.ipa": {
+"bundle": "com.music.laya",
+"ok": true
+},
+"https://github.com/imxieyi/Kernarium/releases/download/andarium-1.1/Andarium-1.1-16.ipa": {
+"bundle": "com.imxieyi.andarium",
+"ok": true
+},
+"https://github.com/infinityf4p/TiebaPure-iOS/releases/download/v1.4.15/TiebaPure-v1.4.15-unsigned.ipa": {
+"bundle": "dev.infinityf4p.tiebapure",
+"ok": true
+},
+"https://github.com/itzzace/ytkace/releases/download/v1.1.9/YTKACE_1.1.9_YouTube_21.47.6.ipa": {
+"bundle": "com.google.ios.youtube",
+"ok": true
+},
+"https://github.com/jailbreakdotparty/Erosion/releases/download/0.3.1/Erosion_v0.3.1.ipa": {
+"bundle": "com.jbdotparty.Erosion",
+"ok": true
+},
+"https://github.com/jailbreakdotparty/PancakeStore/releases/download/1.3.1/PancakeStore_v1.3.1.ipa": {
+"bundle": "com.jbdotparty.PancakeStore",
+"ok": true
+},
+"https://github.com/kodjodevf/mangayomi/releases/download/v0.9.97/Mangayomi-v0.9.97-ios.ipa": {
+"bundle": "com.kodjodevf.mangayomi",
+"ok": true
+},
+"https://github.com/kolbicz/Cyanide/releases/download/v1.40.0/Cyanide-1.40.0.ipa": {
+"bundle": "com.zeroxjf.ios-cyanide1",
+"ok": true
+},
+"https://github.com/kolbicz/WQFiles/releases/download/v0.9.30/WQFiles.ipa": {
+"bundle": "cz.kolbi.wqfiles",
+"ok": true
+},
+"https://github.com/kuscholar/iDeck/releases/download/v0.1.3-alpha.6/iDeck-0.1.3-alpha.6-build145.ipa": {
+"bundle": "com.kuschqin.madeira.steamui",
+"ok": true
+},
+"https://github.com/leonardob8777-bit/Eagle/releases/download/v1.0.7/Eagle-1.0.7-102.ipa": {
+"bundle": "com.leonardobaptiste.laracustom",
+"ok": true
+},
+"https://github.com/lpfoj/lsx4/releases/download/ios-jit-128.9934/LSX4-JIT-128.9934.ipa": {
+"bundle": "com.llayerlinux.LSX4RuntimeProbe",
+"ok": true
+},
+"https://github.com/mcpebd/ipa-wo-hynis-jutsu/releases/download/v26.60/Minecraft-Hynis%2BHyniSwizzleFPS-26.60.ipa": {
+"bundle": "com.mojang.minecraftpe.hynis",
+"ok": true
+},
+"https://github.com/mengangs/ipadn/releases/download/v2.3.5/iPadn-2.3.5-unsigned.ipa": {
+"bundle": "app.local.iPadn",
+"ok": true
+},
+"https://github.com/mikevillarroel/buildbox-ios/releases/download/v2.1.8-build179-personal-crosspromo/BuildBox-179-personal-crosspromo-20261119-003559.ipa": {
+"bundle": null,
+"ok": false
+},
+"https://github.com/mikevillarroel/buildbox-ios/releases/download/v2.1.8-build179-personal/BuildBox-179-personal-notestpill-20261119-002834.ipa": {
+"bundle": null,
+"ok": false
+},
+"https://github.com/mikevillarroel/buildbox-ios/releases/download/v2.1.8/BuildBox-2.1.8.ipa": {
+"bundle": "com.mikevillarroel.buildbox",
+"ok": true
+},
+"https://github.com/mikevillarroel/layers/releases/download/v1.0.5/Layers-1.0.5.ipa": {
+"bundle": "com.mikevillarroel.layers",
+"ok": true
+},
+"https://github.com/mikevillarroel/tendiemaker/releases/download/v1.1.0/TendieMaker-1.1.0.ipa": {
+"bundle": "com.tendiemaker.app",
+"ok": true
+},
+"https://github.com/minh-ton/reynard-browser/releases/download/0.22.1/Reynard-Jailbroken.ipa": {
+"bundle": "com.minh-ton.Reynard",
+"ok": true
+},
+"https://github.com/mirazbakis/AltLoad/releases/download/v1.8.1/AltLoad.ipa": {
+"bundle": "com.mirazbakis.altload",
+"ok": true
+},
+"https://github.com/mxhm11cr/LinuxRunner/releases/download/v1.1.2/LinuxRunner-1.1.2-build910.ipa": {
+"bundle": "dev.linuxrunner.app",
+"ok": true
+},
+"https://github.com/nathanialf/ico-pc/releases/download/v0.11.16/ico-pc-v0.11.16-ios-unsigned.ipa": {
+"bundle": "com.defnf.icopc",
+"ok": true
+},
+"https://github.com/oledz-i/Hinoki/releases/download/v1.6.2/Hinoki-1.6.2.ipa": {
+"bundle": "org.vita3k.ios",
+"ok": true
+},
+"https://github.com/oneamendez/crate-ios/releases/download/v0.1.5/crate-unsigned.ipa": {
+"bundle": "com.amendez.crate",
+"ok": true
+},
+"https://github.com/onlyknt/pziOS/releases/download/pziOS/pziOS-0.9.0-beta.5-b42.21.ipa": {
+"bundle": "com.knt.pzios",
+"ok": true
+},
+"https://github.com/open-ani/animeko/releases/download/v6.4.1/ani-6.4.1.ipa": {
+"bundle": "org.animeko.animeko",
+"ok": true
+},
+"https://github.com/openAnimeFlow/AnimeFlow/releases/download/v2.7.0/AnimeFlow-ios-2.7.0.ipa": {
+"bundle": "com.ligg.animeflow",
+"ok": true
+},
+"https://github.com/optimalabsistem/NusaNX/releases/download/v0.1.1-beta/NusaNX.0.1.1.Beta.ipa": {
+"bundle": "com.nusanx.studio",
+"ok": true
+},
+"https://github.com/playportdev/playport/releases/download/v0.5.0/Playport-0.5.0.ipa": {
+"bundle": "dev.playport.app",
+"ok": true
+},
+"https://github.com/pookjw/HermesEnabler/releases/download/1.6.3/HermesEnabler.ipa": {
+"bundle": "com.example.HermesEnabler",
+"ok": true
+},
+"https://github.com/pwnapplehat/EscapeOS/releases/download/v0.3.2/EscapeOS-0.3.2.ipa": {
+"bundle": "com.ipaside.escapeos",
+"ok": true
+},
+"https://github.com/pwnapplehat/TetherlessiOS/releases/download/v1.2.6/Tetherless-1.2.6-Legacy.ipa": {
+"bundle": "com.ipaside.tetherless",
+"ok": true
+},
+"https://github.com/pxx917144686/APP/releases/download/2.9.1/APP_2.9.1.ipa": {
+"bundle": "com.pxx917144686.App",
+"ok": true
+},
+"https://github.com/rooootdev/lara/releases/download/nightly/lara.ipa": {
+"bundle": "com.roooot.lara",
+"ok": true
+},
+"https://github.com/roothide/Dopamine-roothide/releases/download/30/Dopamine-roothide-3.0.13-30.ipa": {
+"bundle": "com.opa334.Dopamine-roothide",
+"ok": true
+},
+"https://github.com/ryanbr/noop/releases/download/testing-latest/NOOP-ios-unsigned-v12.1.0.ipa": {
+"bundle": "com.noopapp.noop",
+"ok": true
+},
+"https://github.com/sasobhabha/Gester/releases/download/v1/Gester-2.4.1.ipa": {
+"bundle": "com.kamui.escape",
+"ok": true
+},
+"https://github.com/seanhowarthdev/Roam-Control/releases/download/v0.9.9/RoamControl-0.9.9-Build105.ipa": {
+"bundle": "com.roamcontrol",
+"ok": true
+},
+"https://github.com/shopifygav222/horizon-pocket-edition-ios/releases/download/v1.1.0/HorizonPE-1.1.0.ipa": {
+"bundle": "dev.horizon.pocketedition",
+"ok": true
+},
+"https://github.com/shplash/IPAID/releases/download/v2.0/IPAID-2.0.ipa": {
+"bundle": "com.shplash.ipaid",
+"ok": true
+},
+"https://github.com/shplash/ModShelf/releases/download/v1.1.3/ModShelf-v1.1.3.ipa": {
+"bundle": "com.shplash.modshelf",
+"ok": true
+},
+"https://github.com/stossy11/MeloCafe/releases/download/1.1/MeloCafe.ipa": {
+"bundle": "com.stossy11.MeloCafe",
+"ok": true
+},
+"https://github.com/suversal/WrapPin/releases/download/v1.0.18/WrapPin-Standard-1.0.18-build61-unsigned.ipa": {
+"bundle": "com.suversal.wrappin",
+"ok": true
+},
+"https://github.com/sytsu/Caterpillar/releases/download/v1.1/Caterpillar.ipa": {
+"bundle": "com.sytsu.caterpillar",
+"ok": true
+},
+"https://github.com/thebcd69/bcd-games/releases/download/v0.1.721/BCD.ipa": {
+"bundle": "com.thebcd69.bcd",
+"ok": true
+},
+"https://github.com/tylerkaska112/Porthole/releases/download/v1.4.1/Porthole-1.4.1-983.ipa": {
+"bundle": "site.portholehq.app",
+"ok": true
+},
+"https://github.com/varunsalian/debrify/releases/download/v0.11.3-alpha.1/debrify-v0.11.3-alpha.1-tvos-unsigned.ipa": {
+"bundle": "com.varunsalian.debrifytv",
+"ok": true
+},
+"https://github.com/verback2308/Opaline/releases/download/1.12.0/Opaline_1.12.0.ipa": {
+"bundle": "com.verback.YTLite",
+"ok": true
+},
+"https://github.com/wsvn53/scrcpy-mobile/releases/download/v4.6.0/Scrcpy-Remote-v4.6.0.ipa": {
+"bundle": "com.mobile.scrcpy-ios",
+"ok": true
+},
+"https://github.com/xmiguel911x/PSX3IOS/releases/download/v0.2.7-beta/PSX3IOS-beta.0.2.7-unsigned.ipa": {
+"bundle": "com.miguel.psx3ios",
+"ok": true
+},
+"https://github.com/yashjain8824/better-xcloud/releases/download/v0.24.2/BetterXCloud_iOS.ipa": {
+"bundle": "com.betterxcloud.ios",
+"ok": true
+},
+"https://github.com/ztby/terminal_worse/releases/download/v1.0/Terminal.ipa": {
+"bundle": null,
+"ok": false
+},
+"https://github.com/zzanehip/The-OldOS-Project/releases/download/2.0_8/OldOS.ipa": {
+"bundle": "com.zurac.BudgetBuddy",
+"ok": true
+},
+"https://ipa.cypwn.xyz/ipas/CapCut_12.0_Cracked.ipa": {
+"bundle": "com.lemon.lvoverseas",
+"ok": true
+},
+"https://ipa.cypwn.xyz/ipas/CloverPit-1.4.8.ipa": {
+"bundle": "com.PanikArcade.CloverPit",
+"ok": true
+},
+"https://ipa.cypwn.xyz/ipas/Vesc_Tool_6.06.2.ipa": {
+"bundle": "com.vesc-project.vesc-tool",
+"ok": true
+},
+"https://ipogo.app/download/ipogo-4.7.7.ipa": {
+"bundle": "com.nianticlabs.pokemongo",
+"ok": true
+},
+"https://pub-25644d4114404c50baab5bb1fb002079.r2.dev/apps/com-animecloud-rm-aae34788/current.ipa": {
+"bundle": "com.animecloud.rm",
+"ok": true
+},
+"https://pub-25644d4114404c50baab5bb1fb002079.r2.dev/apps/com-frontierdesign-videostar-e776c460/current.ipa": {
+"bundle": "com.frontierdesign.videostar",
+"ok": true
+},
+"https://pub-25644d4114404c50baab5bb1fb002079.r2.dev/apps/com-nadotv-nadotv-014a4e4a/current.ipa": {
+"bundle": "com.nadotv.nadoTv",
+"ok": true
+},
+"https://pub-25644d4114404c50baab5bb1fb002079.r2.dev/apps/minecraft/current.ipa": {
+"bundle": "com.mojang.minecraftpe",
+"ok": true
+},
+"https://pub-25644d4114404c50baab5bb1fb002079.r2.dev/apps/org.openjk.ios.sp/release-44d9e98a7451d9ce960d92c8c1ce95c0214e789722938f010401486cfe4b37f9.ipa": {
+"bundle": "org.openjk.ios.sp",
+"ok": true
+},
+"https://repo.ballermc.com/tubevault/MaxMusic_2.4.1_9.45.2.ipa": {
+"bundle": "com.google.ios.youtubemusic",
+"ok": true
+},
+"https://repo.ballermc.com/tubevault/YouTube_v21.38.2_YTPlus_v5.2.2_cracked%5Btg%40tubevault%5D.ipa": {
+"bundle": "com.google.ios.youtube",
+"ok": true
+},
+"https://repo.getzeus.app/assets/apps/zcontainer/zContainer-1.3-11.ipa": {
+"bundle": null,
+"ok": true
+},
+"https://repo.getzeus.app/assets/apps/zeus/Zeus-3.4-23.ipa": {
+"bundle": null,
+"ok": true
+},
+"https://starforgejo.dev/projects/MeloNX/releases/download/2.7/MeloNX.ipa": {
+"bundle": null,
+"ok": true
+},
+"https://unc0ver.dev/downloads/8.1.0/fc07a4f8b3417ef92ebe10440c2fa5a645d0453f/unc0ver_Release_8.1.0.ipa": {
+"bundle": "science.xnu.undecimus",
+"ok": true
+}
+}
