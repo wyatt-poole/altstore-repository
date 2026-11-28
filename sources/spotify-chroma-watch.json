@@ -19,12 +19,12 @@
       "versions": [
         {
           "version": "9.1.98",
-          "buildVersion": "9.1.98.6",
-          "date": "2026-11-28T01:20:09Z",
+          "buildVersion": "9.1.98.8",
+          "date": "2026-11-28T08:13:07Z",
           "localizedDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3 + Watch app.",
           "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma-Watch.ipa",
-          "size": 177460068,
-          "sha256": "e9f6f7a5dbaf5051663bf4731331a5ffa29d3d34f2fb8751592e1ec3b6c38334",
+          "size": 177460101,
+          "sha256": "c0ad4045e5b48751cd6fbeac352900497c144520d59778d00f3e51f29f38618b",
           "minOSVersion": "16.1"
         },
         {
@@ -45,11 +45,11 @@
       "name": "Spotify + Chroma + Watch (Chroma 1.2.0-beta.3)",
       "localizedDescription": "Spotify patched with Chroma (chroma.pw): shaders behind the player, word-by-word lyrics, lock-screen lyrics and more. The Watch app is included (experimental: needs a paid Apple ID and a signer that installs Watch apps). Rebuilt automatically when Chroma updates.",
       "version": "9.1.98",
-      "versionDate": "2026-11-28T01:20:09Z",
+      "versionDate": "2026-11-28T08:13:07Z",
       "versionDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3 + Watch app.",
       "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma-Watch.ipa",
-      "size": 177460068,
-      "sha256": "e9f6f7a5dbaf5051663bf4731331a5ffa29d3d34f2fb8751592e1ec3b6c38334"
+      "size": 177460101,
+      "sha256": "c0ad4045e5b48751cd6fbeac352900497c144520d59778d00f3e51f29f38618b"
     }
   ],
   "news": []
