@@ -1,0 +1,26 @@
+name: Refresh fixed source mirrors
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and fix
+        run: python3 scripts/mirror_sources.py "$GITHUB_REPOSITORY"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mirrors
+          git diff --cached --quiet && exit 0
+          git commit -m "Refresh fixed source mirrors"
+          git pull --rebase origin main
+          git push origin HEAD:main
