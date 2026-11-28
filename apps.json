@@ -52,12 +52,12 @@
       "versions": [
         {
           "version": "9.1.98",
-          "buildVersion": "9.1.98.5",
-          "date": "2026-11-28T01:14:13Z",
+          "buildVersion": "9.1.98.6",
+          "date": "2026-11-28T01:20:10Z",
           "localizedDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3.",
           "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma.ipa",
-          "size": 156129758,
-          "sha256": "e9f90faf6bf556cee763c9eef8e1e56ce7d38b15da08134cae58dfaff001c9da",
+          "size": 156129755,
+          "sha256": "122d93cf53346d5fda0d7b53a6609631095498c7b059191a44f57a29a55b8afc",
           "minOSVersion": "16.1"
         },
         {
@@ -88,11 +88,11 @@
       "name": "Spotify + Chroma (Chroma 1.2.0-beta.3)",
       "localizedDescription": "Spotify patched with Chroma (chroma.pw): shaders behind the player, word-by-word lyrics, lock-screen lyrics and more. Rebuilt automatically when Chroma updates.",
       "version": "9.1.98",
-      "versionDate": "2026-11-28T01:14:13Z",
+      "versionDate": "2026-11-28T01:20:10Z",
       "versionDescription": "Spotify 9.1.98 + Chroma 1.2.0-beta.3.",
       "downloadURL": "https://github.com/wyatt-poole/altstore-repository/releases/download/chroma-1.2.0-beta.3-spotify-9.1.98/Spotify-Chroma.ipa",
-      "size": 156129758,
-      "sha256": "e9f90faf6bf556cee763c9eef8e1e56ce7d38b15da08134cae58dfaff001c9da"
+      "size": 156129755,
+      "sha256": "122d93cf53346d5fda0d7b53a6609631095498c7b059191a44f57a29a55b8afc"
     }
   ],
   "news": []
