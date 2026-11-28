@@ -34,7 +34,7 @@ https://raw.githubusercontent.com/wyatt-poole/altstore-repository/main/apps.json
 |---|---|
 | **YouTube version** | 21.45.4 |
 | **YouMod version** | 2.1.0-5fd9e6e |
-| **Last built** | November 27, 2026 |
+| **Last built** | November 28, 2026 |
 | **Min iOS** | 14.0 |
 
 ### Spotify + Chroma
